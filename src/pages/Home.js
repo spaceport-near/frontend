@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import logo from '../assets/logo.svg';
-import LoginGoogleButton from './components/LoginButton';
+import LoginGoogleButton from '../components/LoginButton';
 import { GoogleLogin } from 'react-google-login';
 import { useAuth } from '../context/AuthProvider';
 import { gapi } from 'gapi-script';
-import FooterMenu from './components/FooterMenu';
+import FooterMenu from '../components/FooterMenu';
 
 const Home = () => {
   const { onSuccess, onFailure } = useAuth();

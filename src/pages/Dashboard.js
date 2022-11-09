@@ -2,21 +2,23 @@ import logo from '../assets/logo.svg';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useAuth } from '../context/AuthProvider';
-import SideBar from './components/SideBar';
-import NavBar from './components/NavBar';
+import SideBar from '../components/SideBar';
+import NavBar from '../components/NavBar';
 
 const Dashboard = () => {
   const { onFailure } = useAuth();
+
   return (
     <div className="flex h-screen bg-primary">
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="flex justify-between items-center bg-dark h-[70px] px-[80px]">
+        <header className="flex justify-between items-center bg-dark min-h-[70px] px-[80px]">
           <div className="flex">
             <img src={logo} alt="spaceport" />
           </div>
-          <div className="flex text-white">
-            <button onClick={onFailure}>
-              Log Out
+          <div className="flex">
+            <p className="flex text-white items-center pr-[20px]">motzart66@gmail.com</p>
+            <button type="button" className="m-auto text-dark px-[30px] h-[42px] bg-primary rounded-[6px] hover:bg-primaryLight" onClick={onFailure}>
+              Sign Out
             </button>
           </div>
         </header>

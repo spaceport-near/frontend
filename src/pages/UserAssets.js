@@ -1,3 +1,5 @@
+import TableItem from '../components/TableItem';
+
 const UserAssets = () => {
   return (
     <div>
@@ -15,7 +17,7 @@ const UserAssets = () => {
             <div className='font-normal text-[18px] leading-[22px]'>Balance</div>
           </div>
           <div>
-
+            <TableItem />
           </div>
         </div>
       </div>

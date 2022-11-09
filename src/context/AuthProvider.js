@@ -11,12 +11,14 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [token, setToken] = React.useState(null);
+  const [token, setToken] = React.useState(true);
+  //const [profile, setProfile] = React.useState(null);
 
   const handleLogin = (res) => {
     console.log('res from google', res);
     const { tokenId } = res;
     setToken('token');
+    //setProfile(profileObj);
 
     const origin = location.state?.from?.pathname || '/dashboard';
     navigate(origin);
@@ -28,6 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   const value = {
     token,
+    //profile,
     onSuccess: handleLogin,
     onFailure: handleLogout,
   };

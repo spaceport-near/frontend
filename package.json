@@ -5,17 +5,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^1.7.3",
+    "gapi-script": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "gapi-script": "^1.2.0",
     "react-google-login": "^5.2.2",
     "react-router-dom": "^6.4.2",
+    "react-scripts": "5.0.1",
     "sass": "^1.55.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "prettier": "prettier --check src",
+    "prettier:fix": "prettier --write src"
   },
   "browserslist": {
     "production": [
@@ -31,6 +34,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.12",
+    "babel-eslint": "^10.1.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "postcss": "^8.4.18",
