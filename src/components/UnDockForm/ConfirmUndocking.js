@@ -3,7 +3,7 @@ import ArrowBackDark from '../../assets/ArrowBackDark.svg';
 import StepLine from '../StepLine';
 import { useState } from 'react';
 
-const TermsAndConditions = ({ setOpenModal, getStep, next }) => {
+const ConfirmUndocking = ({ setOpenModal, getStep }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
@@ -16,7 +16,7 @@ const TermsAndConditions = ({ setOpenModal, getStep, next }) => {
       </div>
       <div className="flex flex-col justify-center items-center gap-2 pt-[60px]">
         <div className="w-[754px]">
-          <h1 className="flex justify-center pb-[20px]">Terms And Conditions</h1>
+          <h1 className="flex justify-center pb-[20px]">Confirm Undocking</h1>
           <button className="flex pb-[10px] items-center justify-start" onClick={() => setOpenModal(false)}>
             <img src={ArrowBackDark} className="flex" alt='arrow' />
             <span className='font-normal text-[16px] leading-[20px] pl-[5px]'>Go Back</span>
@@ -46,7 +46,7 @@ const TermsAndConditions = ({ setOpenModal, getStep, next }) => {
               </span>
             </div>
             <div className='self-center flex pb-[30px] flex-col'>
-              <button className="flex items-center justify-center text-[18px] m-auto h-[42px] px-[60px] bg-primary rounded-[4px] hover:bg-primaryLight disabled:bg-primaryLight" disabled={!isChecked} onClick={next}>
+              <button className="flex items-center justify-center text-[18px] m-auto h-[42px] px-[60px] bg-primary rounded-[4px] hover:bg-primaryLight disabled:bg-primaryLight" disabled={!isChecked} onClick={() => {}}>
                 Next
                 <img src={ArrowBackDark} alt="button" className="pr-[10px] rotate-180" />
               </button>
@@ -61,4 +61,4 @@ const TermsAndConditions = ({ setOpenModal, getStep, next }) => {
   )
 }
 
-export default TermsAndConditions;
+export default ConfirmUndocking;

@@ -21,7 +21,7 @@ const AccountSelection = ({setOpenModal, phrase, handleChangePhrase, handleDockA
           <span className='font-normal text-[16px] leading-[20px] pl-[5px]'>Go Back</span>
         </button>
         <div className="flex flex-col px-[70px] justify-center h-[400px] bg-dark rounded-[10px]">
-          <div className="border-b-[2px] border-solid border-theme-blue mb-[15px] flex flex-col">
+          <div className="border-b-[2px] border-solid border-primary mb-[15px] flex flex-col">
           <span className="font-bold leading-[152%] text-[18px] text-white">
             Enter address of the account you with to Dock
           </span>

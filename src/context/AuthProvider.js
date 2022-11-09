@@ -11,26 +11,29 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [token, setToken] = React.useState(true);
-  //const [profile, setProfile] = React.useState(null);
+  const [token, setToken] = React.useState(localStorage.getItem('token'));
+  const [profile, setProfile] = React.useState(JSON.parse(localStorage.getItem('profile')));
 
   const handleLogin = (res) => {
-    console.log('res from google', res);
     const { tokenId } = res;
+    localStorage.setItem('token', tokenId);
+    localStorage.setItem('profile', JSON.stringify(res.profileObj));
+    setProfile(res.profileObj);
     setToken('token');
-    //setProfile(profileObj);
 
     const origin = location.state?.from?.pathname || '/dashboard';
     navigate(origin);
   };
 
   const handleLogout = () => {
+    localStorage.setItem('token', null);
+    localStorage.setItem('profile', null);
     setToken(null);
   };
 
   const value = {
     token,
-    //profile,
+    profile,
     onSuccess: handleLogin,
     onFailure: handleLogout,
   };

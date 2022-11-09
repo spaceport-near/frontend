@@ -6,7 +6,7 @@ import SideBar from '../components/SideBar';
 import NavBar from '../components/NavBar';
 
 const Dashboard = () => {
-  const { onFailure } = useAuth();
+  const { profile, onFailure } = useAuth();
 
   return (
     <div className="flex h-screen bg-primary">
@@ -16,7 +16,7 @@ const Dashboard = () => {
             <img src={logo} alt="spaceport" />
           </div>
           <div className="flex">
-            <p className="flex text-white items-center pr-[20px]">motzart66@gmail.com</p>
+            <p className="flex text-white items-center pr-[20px]">{profile ? profile.email : 'no name'}</p>
             <button type="button" className="m-auto text-dark px-[30px] h-[42px] bg-primary rounded-[6px] hover:bg-primaryLight" onClick={onFailure}>
               Sign Out
             </button>

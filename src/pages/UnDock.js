@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Modal from '../components/Modal';
 import useMultistepForm from '../hooks/useMultistepForm';
 import TermsAndConditions from '../components/UnDockForm/TermsAndConditions';
+import ConfirmUndocking from '../components/UnDockForm/ConfirmUndocking';
+import AccountSelection from '../components/DockForm/AccountSelection';
 
 export const UndockData = {
   list1: [
@@ -16,12 +18,13 @@ const UnDock = () => {
   const [openModal, setOpenModal] = useState(false);
   const getCurrentStep = () => currentStepIndex;
 
-  const { step, currentStepIndex } = useMultistepForm([
-    <TermsAndConditions setOpenModal={setOpenModal} getStep={getCurrentStep}/>
+  const gotoNext = () => next();
+
+  const { step, currentStepIndex, next } = useMultistepForm([
+    <TermsAndConditions setOpenModal={setOpenModal} getStep={getCurrentStep} next={gotoNext}/>,
+    <AccountSelection setOpenModal={setOpenModal} getStep={getCurrentStep} next={gotoNext}/>,
+    <ConfirmUndocking setOpenModal={setOpenModal} getStep={getCurrentStep} next={gotoNext}/>
   ])
-
-
-  console.log('currentStepIndex', currentStepIndex);
 
   return (
     <div className="flex flex-col gap-y-[23px] borderSecondary border-theme-blue px-[42px] py-[34px]  ">

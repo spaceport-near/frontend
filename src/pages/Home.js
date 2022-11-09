@@ -57,7 +57,7 @@ const Home = () => {
             </clipPath>
           </defs>
         </svg>
-        <p className="text-hero pt-[57px] pb-[157px]">Your Ticket into the NEARVERSE</p>
+        <p className="text-hero pt-[57px] pb-[157px]">Your Passport into the NEARVERSE</p>
         <GoogleLogin
           clientId={clientId}
           render={(renderProps) => <LoginGoogleButton disabled={renderProps.disabled} onClick={renderProps.onClick}/>}

@@ -2,8 +2,8 @@ import Loader from '../Loader';
 
 const Processing = () => {
   return (
-    <div className="flex m-auto pt-[50px]" key={"processing"}>
-      <div className="flex flex-col">
+    <div className="h-screen" key={"processing"}>
+      <div className="px-[80px] py-[20px]">
         <h1 className="flex justify-center pt-[70px] pb-[20px]">Processing...</h1>
         <div className="flex flex-col pt-[37px] px-[70px] mx-auto justify-start w-[754px] h-[400px] bg-dark rounded-[10px]">
           <div className="border-b-[2px] border-solid border-primary mb-[15px] flex flex-col">
