@@ -3,7 +3,13 @@ import Modal from '../components/Modal';
 import useMultistepForm from '../hooks/useMultistepForm';
 import TermsAndConditions from '../components/UnDockForm/TermsAndConditions';
 import ConfirmUndocking from '../components/UnDockForm/ConfirmUndocking';
-import AccountSelection from '../components/DockForm/AccountSelection';
+import UnDockAccountSelection from '../components/UnDockForm/UnDockAccountSelection';
+import Processing from '../components/DockForm/Processing';
+import InstructionStepOne from '../components/UnDockForm/InstructionStepOne';
+import InstructionStepTwo from '../components/UnDockForm/InstructionStepTwo';
+import Confirm from '../components/UnDockForm/Confirm';
+import UndockingSuccessful from '../components/UnDockForm/UndockingSuccessful';
+import LastStep from '../components/UnDockForm/LastStep';
 
 export const UndockData = {
   list1: [
@@ -16,14 +22,33 @@ export const UndockData = {
 
 const UnDock = () => {
   const [openModal, setOpenModal] = useState(false);
+
   const getCurrentStep = () => currentStepIndex;
 
   const gotoNext = () => next();
 
-  const { step, currentStepIndex, next } = useMultistepForm([
-    <TermsAndConditions setOpenModal={setOpenModal} getStep={getCurrentStep} next={gotoNext}/>,
-    <AccountSelection setOpenModal={setOpenModal} getStep={getCurrentStep} next={gotoNext}/>,
-    <ConfirmUndocking setOpenModal={setOpenModal} getStep={getCurrentStep} next={gotoNext}/>
+  const goBack = () => back();
+
+  const closeModal = () => {
+    resetSteps();
+    setOpenModal(false)
+  }
+
+  const handleUnDockAccount = () => {
+    goTo(3);
+    setTimeout(() => goTo(4), 2000);
+  }
+
+  const { step, back, currentStepIndex, next, resetSteps, goTo } = useMultistepForm([
+    <TermsAndConditions closeModal={closeModal} getStep={getCurrentStep} next={gotoNext}/>,
+    <UnDockAccountSelection back={goBack} closeModal={closeModal} getStep={getCurrentStep} next={gotoNext}/>,
+    <ConfirmUndocking back={goBack} closeModal={closeModal} getStep={getCurrentStep} next={gotoNext} handleUnDockAccount={handleUnDockAccount}/>,
+    <Processing />,
+    <InstructionStepOne next={gotoNext} />,
+    <InstructionStepTwo next={gotoNext} />,
+    <Confirm next={gotoNext} />,
+    <UndockingSuccessful next={gotoNext} />,
+    <LastStep closeModal={closeModal}/>
   ])
 
   return (

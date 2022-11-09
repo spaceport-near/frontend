@@ -35,7 +35,7 @@ const Dock = () => {
       handleChangePhrase={handleChangePhrase}
       handleDockAccount={handleDockAccount}
     />,
-    <Processing />,
+    <Processing doking/>,
     <DockingSuccessful setOpenModal={setOpenModal} closeModal={closeModal}/>,
     <DockingFailed />
   ])

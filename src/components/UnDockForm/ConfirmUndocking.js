@@ -1,15 +1,40 @@
+import { useState } from 'react';
 import ArrowBack from '../../assets/ArrowBack.svg';
 import ArrowBackDark from '../../assets/ArrowBackDark.svg';
 import StepLine from '../StepLine';
-import { useState } from 'react';
+import UndockingItem from '../UndockingItem';
 
-const ConfirmUndocking = ({ setOpenModal, getStep }) => {
+const UndockingConfirmData = [
+  {
+    name: 'NEAR',
+    label: 'NEAR',
+    amount: "135.00",
+  },
+  {
+    name: 'AURORA',
+    label: 'AURORA',
+    amount: "35.00",
+  },
+  {
+    name: 'Octopus',
+    label: 'OCT',
+    amount: "135.00",
+  },
+  {
+    name: 'USN',
+    label: 'USN',
+    amount: "135.00",
+  },
+];
+
+
+const ConfirmUndocking = ({ closeModal, getStep, next, back, handleUnDockAccount }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
     <div className="h-screen">
-      <div className="px-[80px] py-[20px]">
-        <button  onClick={() => setOpenModal(false)} className='flex items-center text-center bg-white border-solid border-red rounded-[5px] border-[2px] gap-x-[15px] py-[6px] w-[292px] justify-center hover:shadow-md hover:shadow-red'>
+      <div className="py-[20px]">
+        <button  onClick={closeModal} className='flex items-center text-center bg-white border-solid border-red rounded-[5px] border-[2px] gap-x-[15px] py-[6px] w-[292px] justify-center hover:shadow-md hover:shadow-red'>
           <img src={ArrowBack} alt='arrow' />
           <span className='font-normal text-[18px] leading-[22px]'>Exit Docking Sequence</span>
         </button>
@@ -17,21 +42,36 @@ const ConfirmUndocking = ({ setOpenModal, getStep }) => {
       <div className="flex flex-col justify-center items-center gap-2 pt-[60px]">
         <div className="w-[754px]">
           <h1 className="flex justify-center pb-[20px]">Confirm Undocking</h1>
-          <button className="flex pb-[10px] items-center justify-start" onClick={() => setOpenModal(false)}>
+          <button className="flex pb-[10px] items-center justify-start" onClick={back}>
             <img src={ArrowBackDark} className="flex" alt='arrow' />
             <span className='font-normal text-[16px] leading-[20px] pl-[5px]'>Go Back</span>
           </button>
-          <div className="flex flex-col px-[70px] pt-[37px] justify-between h-[400px] bg-dark rounded-[10px]">
+          <div className="flex flex-col px-[70px] pt-[37px] justify-between h-[461px] bg-dark rounded-[10px]">
             <div className="border-b-[2px] border-solid border-primary mb-[15px] flex flex-col">
               <span className="font-bold leading-[152%] text-[18px] text-white">
-                Terms And Conditions
+                Confirm transfer of assets from ...
               </span>
             </div>
-            <div className="text-white">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <div className=" flex flex-col primaryBorder rounded-[5px] px-[20px] py-[10px] items-center text-center gap-y-[10px]">
+              {UndockingConfirmData.map((item, id) => (
+                <UndockingItem
+                  key={id}
+                  name={item.name}
+                  label={item.label}
+                  amount={item.amount}
+                />
+              ))}
             </div>
-            <div className="flex items-center gap-[13px] text-center ">
-              <div className="flex h-5 items-center">
+            <div className="pt-[10px] pb-[10px]">
+              <span className="text-white font-bold text-[16px] leading-[152%]">
+                Undocking Fee:
+              </span>
+              <span className="text-white font-normal text-[16px] leading-[152%]">
+                $X.XX
+              </span>
+            </div>
+            <div className="flex items-start gap-[13px] text-center ">
+              <div className="flex h-6 items-center">
                 <input
                   id="comments"
                   name="comments"
@@ -41,12 +81,15 @@ const ConfirmUndocking = ({ setOpenModal, getStep }) => {
                   onChange={() => setIsChecked(!isChecked)}
                 />
               </div>
-              <span className="font-normal text-white text-[18px] leading-[152%]">
-                I have read and accept the terms & conditions.
-              </span>
+              <p className="text-white font-normal text-[18x] leading-[152%]">
+                I confirm that I want to undock my account and transfer the selected
+                assets to <span className="text-white font-bold text-[18px] leading-[152%]">
+                account.near
+                </span>
+              </p>
             </div>
             <div className='self-center flex pb-[30px] flex-col'>
-              <button className="flex items-center justify-center text-[18px] m-auto h-[42px] px-[60px] bg-primary rounded-[4px] hover:bg-primaryLight disabled:bg-primaryLight" disabled={!isChecked} onClick={() => {}}>
+              <button className="flex items-center justify-center text-[18px] m-auto h-[42px] px-[60px] bg-primary rounded-[4px] hover:bg-primaryLight disabled:bg-primaryLight" disabled={!isChecked} onClick={handleUnDockAccount}>
                 Next
                 <img src={ArrowBackDark} alt="button" className="pr-[10px] rotate-180" />
               </button>
