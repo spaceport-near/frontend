@@ -17,7 +17,11 @@ export const UndockData = {
     'Transferring your assets to the wallet',
     ' Launching away from SPACEPORT to explore on your own- this meansyou will be responsible for your PRIVATE KEY. No one will be abl to help you recover your wallet if anything happens!',
   ],
-  list2:['Initiate and fund launch','Transferring of assets','Confirm undock'],
+  list2: [
+    'Initiate and fund launch',
+    'Transferring of assets',
+    'Confirm undock',
+  ],
 };
 
 const UnDock = () => {
@@ -31,30 +35,48 @@ const UnDock = () => {
 
   const closeModal = () => {
     resetSteps();
-    setOpenModal(false)
-  }
+    setOpenModal(false);
+  };
 
   const handleUnDockAccount = () => {
     goTo(3);
     setTimeout(() => goTo(4), 2000);
-  }
+  };
 
-  const { step, back, currentStepIndex, next, resetSteps, goTo } = useMultistepForm([
-    <TermsAndConditions closeModal={closeModal} getStep={getCurrentStep} next={gotoNext}/>,
-    <UnDockAccountSelection back={goBack} closeModal={closeModal} getStep={getCurrentStep} next={gotoNext}/>,
-    <ConfirmUndocking back={goBack} closeModal={closeModal} getStep={getCurrentStep} next={gotoNext} handleUnDockAccount={handleUnDockAccount}/>,
-    <Processing />,
-    <InstructionStepOne next={gotoNext} />,
-    <InstructionStepTwo next={gotoNext} />,
-    <Confirm next={gotoNext} />,
-    <UndockingSuccessful next={gotoNext} />,
-    <LastStep closeModal={closeModal}/>
-  ])
+  const { step, back, currentStepIndex, next, resetSteps, goTo } =
+    useMultistepForm([
+      <TermsAndConditions
+        closeModal={closeModal}
+        getStep={getCurrentStep}
+        next={gotoNext}
+      />,
+      <UnDockAccountSelection
+        back={goBack}
+        closeModal={closeModal}
+        getStep={getCurrentStep}
+        next={gotoNext}
+      />,
+      <ConfirmUndocking
+        back={goBack}
+        closeModal={closeModal}
+        getStep={getCurrentStep}
+        next={gotoNext}
+        handleUnDockAccount={handleUnDockAccount}
+      />,
+      <Processing />,
+      <InstructionStepOne next={gotoNext} />,
+      <InstructionStepTwo next={gotoNext} />,
+      <Confirm next={gotoNext} />,
+      <UndockingSuccessful next={gotoNext} />,
+      <LastStep closeModal={closeModal} />,
+    ]);
 
   return (
     <div className="flex flex-col gap-y-[23px] borderSecondary border-theme-blue px-[42px] py-[34px]  ">
       <div className="border-b-[2px] border-theme-blue border-solid">
-        <span className="font-bold text-[18px] leading-[27px]">Undocking Your SPACEPORT Account</span>
+        <span className="font-bold text-[18px] leading-[27px]">
+          Undocking Your SPACEPORT Account
+        </span>
       </div>
       <div className="flex flex-col gap-y-[25px]">
         <p className="font-normal text-[18px] leading-[27px]">
@@ -75,7 +97,9 @@ const UnDock = () => {
         </div>
       </div>
       <div className="flex flex-col gap-y-[12px]">
-        <span className="font-bold text-[18px] leading-[27px]">So are you ready to fly alone?</span>
+        <span className="font-bold text-[18px] leading-[27px]">
+          So are you ready to fly alone?
+        </span>
         <div>
           <span>Launch Sequence:</span>
           <ul className="pl-[25px]">
@@ -90,15 +114,17 @@ const UnDock = () => {
       <button
         className="m-auto w-[400px] h-[42px] bg-primary rounded-[4px] hover:bg-primaryLight"
         type="button"
-        onClick={() => setOpenModal(true)}>
+        onClick={() => setOpenModal(true)}
+      >
         Proceed to Terms & Conditions
       </button>
-      {openModal &&
+      {openModal && (
         <Modal open={openModal} setOpen={setOpenModal}>
-          { step }
-        </Modal>}
+          {step}
+        </Modal>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default UnDock;

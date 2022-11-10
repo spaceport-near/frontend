@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-  Routes,
-  Route,
-} from 'react-router-dom';
-import { AuthProvider, ProtectedRoute } from './context/AuthProvider'
+import { Routes, Route } from 'react-router-dom';
+import { AuthProvider, ProtectedRoute } from './context/AuthProvider';
 
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
@@ -17,16 +14,22 @@ const App = () => {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/" element={<Home />} />
-        <Route path="dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
+        <Route
+          path="dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<UserAssets />} />
-          <Route path='dock' element={<Dock/>}/>
-          <Route path='undock' element={<UnDock/>}/>
+          <Route path="dock" element={<Dock />} />
+          <Route path="undock" element={<UnDock />} />
         </Route>
         <Route path="*" element={() => {}} />
       </Routes>
     </AuthProvider>
   );
-}
+};
 
 export default App;
-

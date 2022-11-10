@@ -13,20 +13,20 @@ const Dock = () => {
   const [phrase, setPhrase] = useState('');
 
   const handleChangePhrase = (e) => {
-    setPhrase(e.target.value)
-  }
+    setPhrase(e.target.value);
+  };
 
   const handleDockAccount = () => {
     console.log('phrase', phrase);
     console.log('dock Account');
     goTo(1);
     setTimeout(() => goTo(2), 2000);
-  }
+  };
 
   const closeModal = () => {
-    goTo(0)
+    goTo(0);
     setOpenModal(false);
-  }
+  };
 
   const { step, goTo } = useMultistepForm([
     <AccountSelection
@@ -35,10 +35,10 @@ const Dock = () => {
       handleChangePhrase={handleChangePhrase}
       handleDockAccount={handleDockAccount}
     />,
-    <Processing doking/>,
-    <DockingSuccessful setOpenModal={setOpenModal} closeModal={closeModal}/>,
-    <DockingFailed />
-  ])
+    <Processing doking />,
+    <DockingSuccessful setOpenModal={setOpenModal} closeModal={closeModal} />,
+    <DockingFailed />,
+  ]);
 
   return (
     <div className="borderSecondary flex flex-col gap-y-[23px] px-[42px] py-[34px]">
@@ -58,7 +58,9 @@ const Dock = () => {
       </p>
       <div className="flex flex-col gap-y-[15px] borderPrimary px-[27px] pt-[25px] pb-[42px] ">
         <div>
-          <span className="font-bold text-[18px] leading-[22px]">ATTENTION:</span>{' '}
+          <span className="font-bold text-[18px] leading-[22px]">
+            ATTENTION:
+          </span>{' '}
           <span className="font-normal text-[18px] leading-[150%]">
             Docking process will delete all security & recovery options
           </span>
@@ -79,14 +81,20 @@ const Dock = () => {
           </span>
         </div>
       </div>
-      <button className="m-auto w-[400px] h-[42px] bg-primary rounded-[4px] hover:bg-primaryLight disabled:bg-primaryLight" disabled={!isChecked} onClick={() => setOpenModal(true)}>Connect an Account</button>
-      {openModal &&
+      <button
+        className="m-auto w-[400px] h-[42px] bg-primary rounded-[4px] hover:bg-primaryLight disabled:bg-primaryLight"
+        disabled={!isChecked}
+        onClick={() => setOpenModal(true)}
+      >
+        Connect an Account
+      </button>
+      {openModal && (
         <Modal open={openModal} setOpen={setOpenModal}>
-          { step }
+          {step}
         </Modal>
-      }
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default Dock;

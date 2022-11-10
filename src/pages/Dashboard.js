@@ -16,8 +16,14 @@ const Dashboard = () => {
             <img src={logo} alt="spaceport" />
           </div>
           <div className="flex">
-            <p className="flex text-white items-center pr-[20px]">{profile ? profile.email : 'no name'}</p>
-            <button type="button" className="m-auto text-dark px-[30px] h-[42px] bg-primary rounded-[6px] hover:bg-primaryLight" onClick={onFailure}>
+            <p className="flex text-white items-center pr-[20px]">
+              {profile ? profile.email : 'no name'}
+            </p>
+            <button
+              type="button"
+              className="m-auto text-dark px-[30px] h-[42px] bg-primary rounded-[6px] hover:bg-primaryLight"
+              onClick={onFailure}
+            >
               Sign Out
             </button>
           </div>
@@ -25,15 +31,15 @@ const Dashboard = () => {
         <div className="flex h-full">
           <SideBar />
           <main className="flex flex-col w-full bg-white overflow-x-hidden overflow-y-auto">
-            <div className='w-full h-[132px] border-solid border-b-[2px] border-primary pt-[53px] pb-[30px] pl-[63px]'>
-              <span className='text-dark font-normal text-[48px] leading-[60px]'>
+            <div className="w-full h-[132px] border-solid border-b-[2px] border-primary pt-[53px] pb-[30px] pl-[63px]">
+              <span className="text-dark font-normal text-[48px] leading-[60px]">
                 HOME
               </span>
             </div>
-            <div className='px-[25px] py-[30px]'>
-              <NavBar/>
+            <div className="px-[25px] py-[30px]">
+              <NavBar />
             </div>
-            <div className='max-h-[954px]  px-[25px] pb-[35px]'>
+            <div className="max-h-[954px]  px-[25px] pb-[35px]">
               <div className="border-2 border-primary rounded-[3px]">
                 <Outlet />
               </div>

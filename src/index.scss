@@ -26,19 +26,19 @@
     box-sizing: border-box;
     position: relative;
     display: block;
-    transform: scale(var(--ggs,1));
+    transform: scale(var(--ggs, 1));
     width: 23px;
     height: 23px;
   }
 
   .arrow-left::after,
   .arrow-left::before {
-    content: "";
+    content: '';
     display: block;
     box-sizing: border-box;
     position: absolute;
     left: 3px;
-    color: #FF6D6D;
+    color: #ff6d6d;
   }
 
   .arrow-left::after {
@@ -47,14 +47,14 @@
     border-bottom: 2px solid;
     border-left: 2px solid;
     transform: rotate(45deg);
-    bottom: 6px
+    bottom: 6px;
   }
 
   .arrow-left::before {
     width: 18px;
     height: 2px;
     bottom: 10px;
-    background: #FF6D6D;
+    background: #ff6d6d;
   }
 
   .lds_dual_ring {
@@ -71,7 +71,7 @@
     height: 80px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid #78ded4;;
+    border: 6px solid #78ded4;
     border-color: #78ded4 transparent #78ded4 transparent;
     animation: lds_dual_ring 1.2s linear infinite;
 

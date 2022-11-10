@@ -9,11 +9,12 @@ const LastStep = ({ closeModal }) => {
                 Good luck, cryptonaut!
               </span>
             </div>
-            <div className="text-white">
-              See you in the NEARverse!
-            </div>
-            <div className='self-center flex pb-[30px] flex-col'>
-              <button className="flex items-center justify-center text-[18px] m-auto h-[42px] px-[60px] bg-primary rounded-[4px] hover:bg-primaryLight disabled:bg-primaryLight" onClick={closeModal}>
+            <div className="text-white">See you in the NEARverse!</div>
+            <div className="self-center flex pb-[30px] flex-col">
+              <button
+                className="flex items-center justify-center text-[18px] m-auto h-[42px] px-[60px] bg-primary rounded-[4px] hover:bg-primaryLight disabled:bg-primaryLight"
+                onClick={closeModal}
+              >
                 Close
               </button>
             </div>
@@ -21,7 +22,7 @@ const LastStep = ({ closeModal }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default LastStep;

@@ -1,12 +1,6 @@
 import React from 'react';
 
-const RadioButton = ({
-     id,
-     value,
-     label,
-     setSelect,
-     selected,
-   }) => {
+const RadioButton = ({ id, value, label, setSelect, selected }) => {
   const isSelectedButton = (value) => selected === value;
 
   const handleSelected = (e) => {

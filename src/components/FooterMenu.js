@@ -5,58 +5,57 @@ const menuMobileApp = {
   menu: [
     {
       title: 'Features',
-      link: '#'
+      link: '#',
     },
     {
       title: 'Live share',
-      link: '#'
+      link: '#',
     },
     {
       title: 'Video record',
-      link: '#'
+      link: '#',
     },
-  ]
-}
+  ],
+};
 
 const menuCommunity = {
   title: 'Community',
   menu: [
     {
       title: 'Featured artists',
-      link: '#'
+      link: '#',
     },
     {
       title: 'The Portal',
-      link: '#'
+      link: '#',
     },
     {
       title: 'Live events',
-      link: '#'
+      link: '#',
     },
-  ]
-}
+  ],
+};
 
 const menuCompany = {
   title: 'Company',
   menu: [
     {
       title: 'About us',
-      link: '#'
+      link: '#',
     },
     {
       title: 'Contact us',
-      link: '#'
+      link: '#',
     },
     {
       title: 'History',
-      link: '#'
+      link: '#',
     },
-  ]
-}
+  ],
+};
 
 const FooterMenu = () => {
-  return (
-    [menuMobileApp, menuCommunity, menuCompany].map((item, index) => (
+  return [menuMobileApp, menuCommunity, menuCompany].map((item, index) => (
     <div className="flex flex-col" key={item.title + index}>
       <h4 className="text-primary">{item.title}</h4>
       <ul className="pt-[16px] text-menu_sm">
@@ -65,8 +64,7 @@ const FooterMenu = () => {
         ))}
       </ul>
     </div>
-  ))
-  );
-}
+  ));
+};
 
 export default FooterMenu;

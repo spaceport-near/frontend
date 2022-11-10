@@ -1,12 +1,17 @@
-import { Fragment, useRef, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useRef, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 
-const Modal = ({open, setOpen, children}) => {
-  const cancelButtonRef = useRef(null)
+const Modal = ({ open, setOpen, children }) => {
+  const cancelButtonRef = useRef(null);
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={() => {}}>
+      <Dialog
+        as="div"
+        className="relative z-10"
+        initialFocus={cancelButtonRef}
+        onClose={() => {}}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -20,13 +25,11 @@ const Modal = ({open, setOpen, children}) => {
         </Transition.Child>
 
         <div className="fixed h-screen top-[65px] px-[80px] inset-0 z-10 overflow-y-auto">
-          <div className="w-auto">
-              { children }
-          </div>
+          <div className="w-auto">{children}</div>
         </div>
       </Dialog>
     </Transition.Root>
-  )
-}
+  );
+};
 
 export default Modal;

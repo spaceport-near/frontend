@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  Navigate,
-  useNavigate,
-  useLocation,
-} from 'react-router-dom';
+import { Navigate, useNavigate, useLocation } from 'react-router-dom';
 
 const AuthContext = React.createContext(null);
 
@@ -12,7 +8,9 @@ export const AuthProvider = ({ children }) => {
   const location = useLocation();
 
   const [token, setToken] = React.useState(localStorage.getItem('token'));
-  const [profile, setProfile] = React.useState(JSON.parse(localStorage.getItem('profile')));
+  const [profile, setProfile] = React.useState(
+    JSON.parse(localStorage.getItem('profile'))
+  );
 
   const handleLogin = (res) => {
     const { tokenId } = res;
@@ -38,11 +36,7 @@ export const AuthProvider = ({ children }) => {
     onFailure: handleLogout,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {

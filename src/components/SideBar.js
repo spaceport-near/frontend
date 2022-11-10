@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import round from '../assets/icons/round.svg';
 import polygon from '../assets/icons/polygon.svg';
@@ -10,46 +10,46 @@ import letterA from '../assets/letterA.svg';
 
 export const NavBarItems = [
   {
-    name:'Home',
+    name: 'Home',
     icon: round,
-    link:'',
-    key:'home',
+    link: '',
+    key: 'home',
     active: true,
     comingSoon: false,
   },
   {
-    name:'Ecosystem',
+    name: 'Ecosystem',
     icon: polygon,
-    link:'ecosystem',
-    key:'ecosystem',
+    link: 'ecosystem',
+    key: 'ecosystem',
     active: false,
     comingSoon: true,
   },
   {
-    name:'Marketplace',
+    name: 'Marketplace',
     icon: rectangle,
-    link:'marketplace',
-    key:'marketplace',
+    link: 'marketplace',
+    key: 'marketplace',
     active: false,
     comingSoon: true,
   },
   {
-    name:'Settings',
+    name: 'Settings',
     icon: arrow,
-    link:'settings',
-    key:'settings',
+    link: 'settings',
+    key: 'settings',
     active: false,
     comingSoon: true,
   },
   {
-    name:'Help?',
+    name: 'Help?',
     icon: star,
-    link:'help',
-    key:'help',
+    link: 'help',
+    key: 'help',
     active: false,
     comingSoon: true,
   },
-]
+];
 
 const SideBar = () => {
   return (
@@ -57,7 +57,7 @@ const SideBar = () => {
       <div className="flex flex-col box-border pt-[48px] pr-[36px] pb-[0px] pl-[48px]">
         <div className="pb-[56px] flex items-center">
           <span className="font-normal text-[24px] leading-[30px]">MY</span>
-          <img src={letterA} alt="rocket" className="pl-3"/>
+          <img src={letterA} alt="rocket" className="pl-3" />
           <span className="font-normal text-[24px] leading-[30px]">CCOUNT</span>
         </div>
       </div>
@@ -71,15 +71,13 @@ const SideBar = () => {
               <NavLink
                 className="flex items-center text-center py-[15px] pr-[0px] pl-[14px] gap-x-[13px] rounded-[8px] w-[251px] opacity-50"
                 key={item.key}
-                to=''
+                to=""
               >
-                <img
-                  className="block"
-                  src={item.icon}
-                  alt="icon"
-                />
+                <img className="block" src={item.icon} alt="icon" />
                 <div className="flex flex-col items-start">
-                  <p className="font-normal text-[18px] leading-[22px]">{item.name}</p>
+                  <p className="font-normal text-[18px] leading-[22px]">
+                    {item.name}
+                  </p>
                   <p className="text-green text-[14px]">Coming Soon</p>
                 </div>
               </NavLink>
@@ -93,19 +91,17 @@ const SideBar = () => {
                 key={item.key}
                 to={item.link}
               >
-                <img
-                  className="block"
-                  src={item.icon}
-                  alt="icon"
-                />
-                <p className="font-normal text-[18px] leading-[22px]">{item.name}</p>
+                <img className="block" src={item.icon} alt="icon" />
+                <p className="font-normal text-[18px] leading-[22px]">
+                  {item.name}
+                </p>
               </NavLink>
             )}
           </div>
         ))}
       </nav>
     </div>
-  )
-}
+  );
+};
 
 export default SideBar;
