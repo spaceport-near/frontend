@@ -11,7 +11,6 @@ const useMultistepForm = (steps) => {
   };
 
   const back = () => {
-    console.log('back');
     setCurrentStepIndex((i) => {
       if (i <= 0) return i;
       return i - 1;
@@ -20,10 +19,7 @@ const useMultistepForm = (steps) => {
 
   const goTo = (index) => setCurrentStepIndex(index);
 
-  const resetSteps = () => {
-    console.log('resetSteps');
-    setCurrentStepIndex(0);
-  };
+  const resetSteps = () => setCurrentStepIndex(0);
 
   return {
     currentStepIndex,

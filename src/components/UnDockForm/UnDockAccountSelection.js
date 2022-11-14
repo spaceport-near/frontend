@@ -23,7 +23,6 @@ const UnDockAccountSelection = ({
       })
       .catch((e) => {
         setUserAccounts([]);
-        console.log('Error get accounts', e);
       });
   }, []);
 

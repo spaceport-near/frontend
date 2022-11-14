@@ -2,7 +2,6 @@ const API_URL = process.env.REACT_APP_BACKEND_API;
 const prefix = 'api/1.0.0';
 
 const userTokenId = localStorage.getItem('token');
-console.log('userTokenId', userTokenId);
 
 export const dockAccount = async (userId, seedPhrase) => {
   const url = `${API_URL}/${prefix}/accounts`;
@@ -23,15 +22,13 @@ export const dockAccount = async (userId, seedPhrase) => {
 
 export const unDockAccount = async (accountId) => {
   const url = `${API_URL}/${prefix}/accounts/${accountId}`;
-  const response = await fetch(url, {
+  return await fetch(url, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
   });
-
-  return await response.json();
 };
 
 export const getAccount = async (accountId) => {

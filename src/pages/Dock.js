@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Modal from '../components/Modal';
 import useMultistepForm from '../hooks/useMultistepForm';
 import AccountSelection from '../components/DockForm/AccountSelection';
-import ArrowBack from '../assets/ArrowBack.svg';
 import Processing from '../components/DockForm/Processing';
 import DockingSuccessful from '../components/DockForm/DockingSuccessful';
 import DockingFailed from '../components/DockForm/DockingFailed';
@@ -20,21 +19,15 @@ const Dock = () => {
   };
 
   const handleDockAccount = () => {
-    console.log('phrase', seedPhrase);
-    console.log('dock Account');
-    console.log('profile', profile);
     goTo(1);
-    // dockAccount(profile.googleId, seedPhrase)
-    //   .then((data) => {
-    //     console.log('dock accc', data);
-    //     goTo(2);
-    //   })
-    //   .catch((e) => {
-    //     goTo(3);
-    //     console.log('Error Dock Account', e)
-    //   });
-
-    setTimeout(() => goTo(2), 2000);
+    dockAccount(profile.googleId, seedPhrase)
+      .then((data) => {
+        goTo(2);
+      })
+      .catch((e) => {
+        goTo(3);
+        console.log('Error Dock Account', e);
+      });
   };
 
   const closeModal = () => {

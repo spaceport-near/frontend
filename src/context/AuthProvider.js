@@ -14,7 +14,6 @@ export const AuthProvider = ({ children }) => {
 
   const handleLogin = (res) => {
     const { tokenId } = res;
-    console.log('res google', res);
     localStorage.removeItem('token');
     localStorage.setItem('token', tokenId);
     localStorage.setItem('profile', JSON.stringify(res.profileObj));

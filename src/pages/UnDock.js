@@ -10,9 +10,10 @@ import InstructionStepTwo from '../components/UnDockForm/InstructionStepTwo';
 import Confirm from '../components/UnDockForm/Confirm';
 import UndockingSuccessful from '../components/UnDockForm/UndockingSuccessful';
 import LastStep from '../components/UnDockForm/LastStep';
-import { getAccount, getAccounts, unDockAccount } from '../services/api';
+import { unDockAccount } from '../services/api';
 import ShowSeedPhrase from '../components/UnDockForm/ShowSeedPhrase';
 import ValidateSeed from '../components/UnDockForm/ValidateSeed';
+import DockingFailed from '../components/DockForm/DockingFailed';
 
 export const UndockData = {
   list1: [
@@ -45,18 +46,16 @@ const UnDock = () => {
   };
 
   const handleUnDockAccount = () => {
-    //goTo(3);
-    // unDockAccount(selectedAccount)
-    //   .then((data) => {
-    //     console.log('data', data);
-    //     window.open('https://wallet.testnet.near.org/', '_blank',)
-    //     goTo(4);
-    //   })
-    //   .catch((e) => {
-    //     goTo(3);
-    //     console.log('Error Dock Account', e)
-    //   });
-    //setTimeout(() => goTo(4), 2000);
+    goTo(5);
+    unDockAccount(selectedAccount)
+      .then((data) => {
+        window.open('https://wallet.testnet.near.org/', '_blank');
+        goTo(6);
+      })
+      .catch((e) => {
+        goTo(11);
+        console.log('Error Dock Account', e);
+      });
   };
 
   const getSeedPhraseByAcc = () => {
@@ -71,8 +70,6 @@ const UnDock = () => {
     goTo(5);
     setTimeout(() => goTo(6), 2000);
   };
-
-  console.log('seedPhrase', seedPhrase);
 
   const { step, back, currentStepIndex, next, resetSteps, goTo } =
     useMultistepForm([
@@ -143,7 +140,7 @@ const UnDock = () => {
           step: 4,
         }}
         seedPhrase={seedPhrase}
-        next={goNextStep}
+        next={handleUnDockAccount}
       />,
       <Processing
         stepSettings={{
@@ -200,6 +197,17 @@ const UnDock = () => {
         next={gotoNext}
       />,
       <LastStep closeModal={closeModal} />,
+      <DockingFailed
+        stepSettings={{
+          showExitButton: true,
+          closeHandler: () => closeModal(),
+          showGoBackButton: false,
+          title: 'Error: Docking Failed',
+          subTitle: 'Spaceport is docking. DO NOT CLOSE THIS SCREEN.',
+          showSteps: false,
+          step: 11,
+        }}
+      />,
     ]);
 
   return (
