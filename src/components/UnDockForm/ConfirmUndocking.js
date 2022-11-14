@@ -3,37 +3,19 @@ import ArrowBack from '../../assets/ArrowBack.svg';
 import ArrowBackDark from '../../assets/ArrowBackDark.svg';
 import StepLine from '../StepLine';
 import UndockingItem from '../UndockingItem';
-
-const UndockingConfirmData = [
-  {
-    name: 'NEAR',
-    label: 'NEAR',
-    amount: '135.00',
-  },
-  {
-    name: 'AURORA',
-    label: 'AURORA',
-    amount: '35.00',
-  },
-  {
-    name: 'Octopus',
-    label: 'OCT',
-    amount: '135.00',
-  },
-  {
-    name: 'USN',
-    label: 'USN',
-    amount: '135.00',
-  },
-];
+import useUserBalances from '../../hooks/useUserBalances';
+import Loader from '../Loader';
 
 const ConfirmUndocking = ({
   closeModal,
   getStep,
   back,
-  handleUnDockAccount,
+  handleNextButton,
+  selectedAccount,
 }) => {
   const [isChecked, setIsChecked] = useState(false);
+
+  const balances = useUserBalances(selectedAccount);
 
   return (
     <div className="h-screen">
@@ -48,7 +30,7 @@ const ConfirmUndocking = ({
           </span>
         </button>
       </div>
-      <div className="flex flex-col justify-center items-center gap-2 pt-[60px]">
+      <div className="flex flex-col justify-center items-center gap-2">
         <div className="w-[754px]">
           <h1 className="flex justify-center pb-[20px]">Confirm Undocking</h1>
           <button
@@ -63,18 +45,22 @@ const ConfirmUndocking = ({
           <div className="flex flex-col px-[70px] pt-[37px] justify-between h-[461px] bg-dark rounded-[10px]">
             <div className="border-b-[2px] border-solid border-primary mb-[15px] flex flex-col">
               <span className="font-bold leading-[152%] text-[18px] text-white">
-                Confirm transfer of assets from ...
+                Confirm transfer of assets from {selectedAccount}
               </span>
             </div>
             <div className=" flex flex-col primaryBorder rounded-[5px] px-[20px] py-[10px] items-center text-center gap-y-[10px]">
-              {UndockingConfirmData.map((item, id) => (
-                <UndockingItem
-                  key={id}
-                  name={item.name}
-                  label={item.label}
-                  amount={item.amount}
-                />
-              ))}
+              {balances ? (
+                balances.map((item, id) => (
+                  <UndockingItem
+                    key={id}
+                    name={item.name}
+                    label={item.label}
+                    amount={item.amount}
+                  />
+                ))
+              ) : (
+                <Loader />
+              )}
             </div>
             <div className="pt-[10px] pb-[10px]">
               <span className="text-white font-bold text-[16px] leading-[152%]">
@@ -99,7 +85,7 @@ const ConfirmUndocking = ({
                 I confirm that I want to undock my account and transfer the
                 selected assets to{' '}
                 <span className="text-white font-bold text-[18px] leading-[152%]">
-                  account.near
+                  {selectedAccount}
                 </span>
               </p>
             </div>
@@ -107,14 +93,9 @@ const ConfirmUndocking = ({
               <button
                 className="flex items-center justify-center text-[18px] m-auto h-[42px] px-[60px] bg-primary rounded-[4px] hover:bg-primaryLight disabled:bg-primaryLight"
                 disabled={!isChecked}
-                onClick={handleUnDockAccount}
+                onClick={handleNextButton}
               >
-                Next
-                <img
-                  src={ArrowBackDark}
-                  alt="button"
-                  className="pr-[10px] rotate-180"
-                />
+                Confirm Undock
               </button>
             </div>
           </div>

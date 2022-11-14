@@ -1,8 +1,11 @@
+import ok from '../../assets/ok.svg';
+
 const DockingSuccessful = ({ closeModal }) => {
   return (
     <div className="h-screen" key={'processing'}>
+      <div className="flex justify-start pt-[48px] pb-[20px]"></div>
       <div className="px-[80px] py-[20px]">
-        <h1 className="flex justify-center pt-[70px] pb-[20px]">
+        <h1 className="flex justify-center pt-[20px] pb-[20px]">
           Docking Successful
         </h1>
         <div className="flex flex-col pt-[37px] px-[70px] mx-auto justify-start w-[754px] h-[400px] bg-dark rounded-[10px]">
@@ -15,8 +18,8 @@ const DockingSuccessful = ({ closeModal }) => {
             All assets for account.near have been successfully transferred.
           </div>
           <div className="flex flex-col mx-auto items-center justify-center py-[30px]">
-            <p className="text-primary">icon</p>
-            <span className="text-primary font-bold text-[14] leading-[152%]">
+            <img src={ok} alt="ok" />
+            <span className="text-primary font-bold text-[14] leading-[152%] pt-[10px]">
               Docking Successful
             </span>
           </div>

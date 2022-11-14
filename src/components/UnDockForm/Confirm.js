@@ -6,7 +6,7 @@ const Confirm = ({ next }) => {
 
   return (
     <div className="h-screen">
-      <div className="flex flex-col justify-center items-center gap-2 pt-[60px]">
+      <div className="flex flex-col justify-center items-center gap-2">
         <div className="w-[754px]">
           <h1 className="flex justify-center pb-[20px]">
             Confirm you have secured your wallet

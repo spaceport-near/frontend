@@ -12,7 +12,7 @@ const AccountSelection = ({
 
   return (
     <div className="flex flex-col w-full min-h-full" key={'account_selection'}>
-      <div className="flex justify-start pt-[18px] pb-[60px]">
+      <div className="flex justify-start pt-[18px] pb-[20px]">
         <button
           onClick={() => setOpenModal(false)}
           className="flex items-center text-center border-solid border-red rounded-[5px] border-[2px] gap-x-[15px] py-[6px] w-[292px] justify-center"

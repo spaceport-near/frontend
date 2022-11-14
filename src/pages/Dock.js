@@ -6,20 +6,34 @@ import ArrowBack from '../assets/ArrowBack.svg';
 import Processing from '../components/DockForm/Processing';
 import DockingSuccessful from '../components/DockForm/DockingSuccessful';
 import DockingFailed from '../components/DockForm/DockingFailed';
+import { dockAccount } from '../services/api';
+import { useAuth } from '../context/AuthProvider';
 
 const Dock = () => {
+  const { profile } = useAuth();
   const [isChecked, setIsChecked] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [phrase, setPhrase] = useState('');
+  const [seedPhrase, setSeedPhrase] = useState('');
 
   const handleChangePhrase = (e) => {
-    setPhrase(e.target.value);
+    setSeedPhrase(e.target.value);
   };
 
   const handleDockAccount = () => {
-    console.log('phrase', phrase);
+    console.log('phrase', seedPhrase);
     console.log('dock Account');
+    console.log('profile', profile);
     goTo(1);
+    // dockAccount(profile.googleId, seedPhrase)
+    //   .then((data) => {
+    //     console.log('dock accc', data);
+    //     goTo(2);
+    //   })
+    //   .catch((e) => {
+    //     goTo(3);
+    //     console.log('Error Dock Account', e)
+    //   });
+
     setTimeout(() => goTo(2), 2000);
   };
 
@@ -31,13 +45,13 @@ const Dock = () => {
   const { step, goTo } = useMultistepForm([
     <AccountSelection
       setOpenModal={setOpenModal}
-      phrase={phrase}
+      phrase={seedPhrase}
       handleChangePhrase={handleChangePhrase}
       handleDockAccount={handleDockAccount}
     />,
     <Processing doking />,
     <DockingSuccessful setOpenModal={setOpenModal} closeModal={closeModal} />,
-    <DockingFailed />,
+    <DockingFailed setOpenModal={closeModal} />,
   ]);
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from '../components/Modal';
 import useMultistepForm from '../hooks/useMultistepForm';
 import TermsAndConditions from '../components/UnDockForm/TermsAndConditions';
@@ -10,6 +10,7 @@ import InstructionStepTwo from '../components/UnDockForm/InstructionStepTwo';
 import Confirm from '../components/UnDockForm/Confirm';
 import UndockingSuccessful from '../components/UnDockForm/UndockingSuccessful';
 import LastStep from '../components/UnDockForm/LastStep';
+import { getAccount, getAccounts, unDockAccount } from '../services/api';
 
 export const UndockData = {
   list1: [
@@ -26,6 +27,7 @@ export const UndockData = {
 
 const UnDock = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [selectedAccount, setSelectedAccount] = useState(null);
 
   const getCurrentStep = () => currentStepIndex;
 
@@ -40,7 +42,23 @@ const UnDock = () => {
 
   const handleUnDockAccount = () => {
     goTo(3);
-    setTimeout(() => goTo(4), 2000);
+    // unDockAccount(selectedAccount)
+    //   .then((data) => {
+    //     console.log('data', data);
+    //     window.open('https://wallet.testnet.near.org/', '_blank',)
+    //     goTo(4);
+    //   })
+    //   .catch((e) => {
+    //     goTo(3);
+    //     console.log('Error Dock Account', e)
+    //   });
+    //setTimeout(() => goTo(4), 2000);
+  };
+
+  const getSeedPhraseByAcc = (accountId) => {
+    getAccount(selectedAccount).then((account) =>
+      console.log('account', account)
+    );
   };
 
   const { step, back, currentStepIndex, next, resetSteps, goTo } =
@@ -55,13 +73,16 @@ const UnDock = () => {
         closeModal={closeModal}
         getStep={getCurrentStep}
         next={gotoNext}
+        selectedAccount={selectedAccount}
+        setSelectedAccount={setSelectedAccount}
       />,
       <ConfirmUndocking
         back={goBack}
         closeModal={closeModal}
         getStep={getCurrentStep}
         next={gotoNext}
-        handleUnDockAccount={handleUnDockAccount}
+        selectedAccount={selectedAccount}
+        handleNextButton={getSeedPhraseByAcc}
       />,
       <Processing />,
       <InstructionStepOne next={gotoNext} />,

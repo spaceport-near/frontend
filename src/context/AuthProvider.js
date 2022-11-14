@@ -14,6 +14,8 @@ export const AuthProvider = ({ children }) => {
 
   const handleLogin = (res) => {
     const { tokenId } = res;
+    console.log('res google', res);
+    localStorage.removeItem('token');
     localStorage.setItem('token', tokenId);
     localStorage.setItem('profile', JSON.stringify(res.profileObj));
     setProfile(res.profileObj);
@@ -24,8 +26,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleLogout = () => {
-    localStorage.setItem('token', null);
-    localStorage.setItem('profile', null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('profile');
     setToken(null);
   };
 
