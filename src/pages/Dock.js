@@ -44,14 +44,52 @@ const Dock = () => {
 
   const { step, goTo } = useMultistepForm([
     <AccountSelection
-      setOpenModal={setOpenModal}
+      stepSettings={{
+        showExitButton: true,
+        closeHandler: () => closeModal(),
+        showGoBackButton: true,
+        goBackButtonHandler: () => closeModal(),
+        title: 'Account Selection',
+        subTitle: 'Enter address of the account you with to Dock',
+        showSteps: false,
+        step: 0,
+      }}
       phrase={seedPhrase}
       handleChangePhrase={handleChangePhrase}
       handleDockAccount={handleDockAccount}
     />,
-    <Processing doking />,
-    <DockingSuccessful setOpenModal={setOpenModal} closeModal={closeModal} />,
-    <DockingFailed setOpenModal={closeModal} />,
+    <Processing
+      stepSettings={{
+        showExitButton: false,
+        showGoBackButton: false,
+        title: 'Processing...',
+        subTitle: 'Spaceport is docking DO NOT CLOSING THIS SCREEN.',
+        showSteps: false,
+        step: 0,
+      }}
+    />,
+    <DockingSuccessful
+      stepSettings={{
+        showExitButton: false,
+        showGoBackButton: false,
+        title: 'Docking Successful',
+        subTitle: 'Welcome to Spaceport!',
+        showSteps: false,
+        step: 0,
+      }}
+      closeModal={closeModal}
+    />,
+    <DockingFailed
+      stepSettings={{
+        showExitButton: true,
+        closeHandler: () => closeModal(),
+        showGoBackButton: false,
+        title: 'Error: Docking Failed',
+        subTitle: 'Spaceport is docking. DO NOT CLOSE THIS SCREEN.',
+        showSteps: false,
+        step: 0,
+      }}
+    />,
   ]);
 
   return (

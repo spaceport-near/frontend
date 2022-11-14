@@ -11,6 +11,8 @@ import Confirm from '../components/UnDockForm/Confirm';
 import UndockingSuccessful from '../components/UnDockForm/UndockingSuccessful';
 import LastStep from '../components/UnDockForm/LastStep';
 import { getAccount, getAccounts, unDockAccount } from '../services/api';
+import ShowSeedPhrase from '../components/UnDockForm/ShowSeedPhrase';
+import ValidateSeed from '../components/UnDockForm/ValidateSeed';
 
 export const UndockData = {
   list1: [
@@ -28,6 +30,8 @@ export const UndockData = {
 const UnDock = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedAccount, setSelectedAccount] = useState(null);
+  const [userAccounts, setUserAccounts] = useState(null);
+  const [seedPhrase, setSeedPhrase] = useState(null);
 
   const getCurrentStep = () => currentStepIndex;
 
@@ -41,7 +45,7 @@ const UnDock = () => {
   };
 
   const handleUnDockAccount = () => {
-    goTo(3);
+    //goTo(3);
     // unDockAccount(selectedAccount)
     //   .then((data) => {
     //     console.log('data', data);
@@ -55,40 +59,146 @@ const UnDock = () => {
     //setTimeout(() => goTo(4), 2000);
   };
 
-  const getSeedPhraseByAcc = (accountId) => {
-    getAccount(selectedAccount).then((account) =>
-      console.log('account', account)
+  const getSeedPhraseByAcc = () => {
+    const accForUndock = userAccounts.find(
+      (acc) => acc.accountId === selectedAccount
     );
+    setSeedPhrase(accForUndock.seedKey.seed);
+    goTo(3);
   };
+
+  const goNextStep = () => {
+    goTo(5);
+    setTimeout(() => goTo(6), 2000);
+  };
+
+  console.log('seedPhrase', seedPhrase);
 
   const { step, back, currentStepIndex, next, resetSteps, goTo } =
     useMultistepForm([
       <TermsAndConditions
+        stepSettings={{
+          showExitButton: true,
+          closeHandler: () => closeModal(),
+          showGoBackButton: true,
+          goBackButtonHandler: () => closeModal(),
+          title: 'Terms And Conditions',
+          subTitle: 'Terms And Conditions',
+          showSteps: true,
+          step: 0,
+        }}
         closeModal={closeModal}
-        getStep={getCurrentStep}
         next={gotoNext}
       />,
       <UnDockAccountSelection
-        back={goBack}
-        closeModal={closeModal}
-        getStep={getCurrentStep}
+        stepSettings={{
+          showExitButton: true,
+          closeHandler: () => closeModal(),
+          showGoBackButton: true,
+          goBackButtonHandler: () => goBack(),
+          title: 'Account Selection',
+          subTitle: 'Select the account you wish to Undock',
+          showSteps: true,
+          step: 1,
+        }}
         next={gotoNext}
         selectedAccount={selectedAccount}
         setSelectedAccount={setSelectedAccount}
+        userAccounts={userAccounts}
+        setUserAccounts={setUserAccounts}
       />,
       <ConfirmUndocking
-        back={goBack}
-        closeModal={closeModal}
-        getStep={getCurrentStep}
-        next={gotoNext}
+        stepSettings={{
+          showExitButton: true,
+          closeHandler: () => closeModal(),
+          showGoBackButton: true,
+          goBackButtonHandler: () => goBack(),
+          title: 'Confirm Undocking',
+          subTitle: `Confirm transfer of assets from ${selectedAccount}`,
+          showSteps: true,
+          step: 2,
+        }}
         selectedAccount={selectedAccount}
         handleNextButton={getSeedPhraseByAcc}
       />,
-      <Processing />,
-      <InstructionStepOne next={gotoNext} />,
-      <InstructionStepTwo next={gotoNext} />,
-      <Confirm next={gotoNext} />,
-      <UndockingSuccessful next={gotoNext} />,
+      <ShowSeedPhrase
+        stepSettings={{
+          showExitButton: false,
+          showGoBackButton: false,
+          title: 'Undocking you account...',
+          subTitle: `Your New Seed Phrase for ${selectedAccount}`,
+          showSteps: false,
+          step: 3,
+        }}
+        seedPhrase={seedPhrase}
+        next={gotoNext}
+      />,
+      <ValidateSeed
+        stepSettings={{
+          showExitButton: false,
+          showGoBackButton: false,
+          title: 'Undocking you account...',
+          subTitle: `Your New Seed Phrase for ${selectedAccount}`,
+          showSteps: false,
+          step: 4,
+        }}
+        seedPhrase={seedPhrase}
+        next={goNextStep}
+      />,
+      <Processing
+        stepSettings={{
+          showExitButton: false,
+          showGoBackButton: false,
+          title: 'Processing...',
+          subTitle: `Spaceport is undocking ${selectedAccount}. DO NOT CLOSE THIS SCREEN.`,
+          showSteps: false,
+          step: 5,
+        }}
+      />,
+      <InstructionStepOne
+        stepSettings={{
+          showExitButton: false,
+          showGoBackButton: false,
+          title: 'Instructions to Enable Passphrase on your new account',
+          subTitle: `Follow this steps to enable the passphrase on your NEAR account`,
+          showSteps: false,
+          step: 6,
+        }}
+        next={gotoNext}
+      />,
+      <InstructionStepTwo
+        stepSettings={{
+          showExitButton: false,
+          showGoBackButton: false,
+          title: 'Instructions to Enable Passphrase on your new account',
+          subTitle: `Follow this steps to enable the passphrase on your NEAR account`,
+          showSteps: false,
+          step: 7,
+        }}
+        next={gotoNext}
+      />,
+      <Confirm
+        stepSettings={{
+          showExitButton: false,
+          showGoBackButton: false,
+          title: 'Confirm you have secured your wallet',
+          subTitle: 'Confirm undocking',
+          showSteps: false,
+          step: 8,
+        }}
+        next={gotoNext}
+      />,
+      <UndockingSuccessful
+        stepSettings={{
+          showExitButton: false,
+          showGoBackButton: false,
+          title: 'Undocking Successful',
+          subTitle: `Spaceport has undocking ${selectedAccount}`,
+          showSteps: false,
+          step: 9,
+        }}
+        next={gotoNext}
+      />,
       <LastStep closeModal={closeModal} />,
     ]);
 
