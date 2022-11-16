@@ -19,7 +19,7 @@ const StepWrapper = ({
         {showExitButton && (
           <button
             onClick={closeHandler}
-            className="flex items-center text-center bg-white border-solid border-red rounded-[5px] border-[2px] gap-x-[15px] py-[6px] w-[292px] justify-center hover:shadow-md hover:shadow-red"
+            className="flex items-center text-center bg-white border-solid border-red rounded-[5px] border-[2px] gap-x-[15px] py-[6px] w-[292px] justify-center hover:shadow-sm hover:shadow-red"
           >
             <img src={ArrowBack} alt="arrow" />
             <span className="font-normal text-[18px] leading-[22px]">

@@ -15,7 +15,7 @@ const ConfirmUndocking = ({
 
   return (
     <StepWrapper {...stepSettings}>
-      <div className=" flex flex-col primaryBorder rounded-[5px] px-[20px] py-[10px] items-center text-center gap-y-[10px]">
+      <div className="flex flex-col primaryBorder rounded-[5px] px-[20px] py-[10px] items-center text-center gap-y-[10px]">
         {balances ? (
           balances.map((item, id) => (
             <UndockingItem

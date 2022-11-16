@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { refreshTokenSetup } from '../services/api';
 
 const AuthContext = React.createContext(null);
 
@@ -14,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
   const handleLogin = (res) => {
     const { tokenId } = res;
-    localStorage.removeItem('token');
+    refreshTokenSetup(res);
     localStorage.setItem('token', tokenId);
     localStorage.setItem('profile', JSON.stringify(res.profileObj));
     setProfile(res.profileObj);

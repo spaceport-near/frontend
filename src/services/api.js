@@ -1,7 +1,17 @@
 const API_URL = process.env.REACT_APP_BACKEND_API;
 const prefix = 'api/1.0.0';
 
-const userTokenId = localStorage.getItem('token');
+export const refreshTokenSetup = (res) => {
+  let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000;
+
+  const refreshToken = async () => {
+    const newAuthRes = await res.reloadAuthResponse();
+    refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
+    localStorage.setItem('token', newAuthRes.id_token);
+    setTimeout(refreshToken, refreshTiming);
+  };
+  setTimeout(refreshToken, refreshTiming);
+};
 
 export const dockAccount = async (userId, seedPhrase) => {
   const url = `${API_URL}/${prefix}/accounts`;
@@ -29,20 +39,6 @@ export const unDockAccount = async (accountId) => {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
   });
-};
-
-export const getAccount = async (accountId) => {
-  const url = `${API_URL}/${prefix}/accounts/${accountId}`;
-
-  const response = await fetch(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-  });
-
-  return await response.json();
 };
 
 export const getAccounts = async () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import rocket from '../assets/rocketUndock.svg';
+import rocket from '../assets/rocket.svg';
 
 const StepLine = ({ step }) => {
   return (

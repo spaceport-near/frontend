@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider, ProtectedRoute } from './context/AuthProvider';
 
@@ -7,8 +7,29 @@ import Dashboard from './pages/Dashboard';
 import Dock from './pages/Dock';
 import UnDock from './pages/UnDock';
 import UserAssets from './pages/UserAssets';
+import { gapi } from 'gapi-script';
 
 const App = () => {
+  const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
+  useEffect(() => {
+    const initClient = () => {
+      gapi.auth2
+        .init({
+          clientId: clientId,
+          scope: 'email',
+        })
+        .then(() => {
+          const googleAuth = gapi.auth2.getAuthInstance();
+          localStorage.setItem(
+            'token',
+            googleAuth.currentUser.get().getAuthResponse().id_token
+          );
+        });
+    };
+    gapi.load('client:auth2', initClient);
+  }, []);
+
   return (
     <AuthProvider>
       <Routes>

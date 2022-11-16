@@ -1,26 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import logo from '../assets/logo.svg';
 import bigLogo from '../assets/bigLogo.svg';
 import LoginGoogleButton from '../components/LoginButton';
 import { GoogleLogin } from 'react-google-login';
 import { useAuth } from '../context/AuthProvider';
-import { gapi } from 'gapi-script';
 import FooterMenu from '../components/FooterMenu';
 import { Navigate } from 'react-router-dom';
 
 const Home = () => {
   const { token, onSuccess, onFailure } = useAuth();
   const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-
-  useEffect(() => {
-    const initClient = () => {
-      gapi.auth2.init({
-        clientId: clientId,
-        scope: 'email',
-      });
-    };
-    gapi.load('client:auth2', initClient);
-  }, []);
 
   return (
     <div className="flex flex-col h-screen md:container md:mx-auto bg-dark text-white">

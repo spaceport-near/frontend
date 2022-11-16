@@ -13,22 +13,18 @@ const UnDockAccountSelection = ({
   userAccounts,
   setUserAccounts,
 }) => {
-  const buttonNextIsDisabled = userAccounts && userAccounts.length !== 0;
+  const buttonNextIsDisabled =
+    selectedAccount && userAccounts && userAccounts.length !== 0;
 
   useEffect(() => {
     getAccounts()
-      .then((data) => {
-        console.log('all accounts', data.page.data);
-        setUserAccounts(data.page.data);
-      })
-      .catch((e) => {
-        setUserAccounts([]);
-      });
+      .then((data) => setUserAccounts(data.page.data))
+      .catch((e) => setUserAccounts([]));
   }, []);
 
   return (
     <StepWrapper {...stepSettings}>
-      <div className="flex flex-row gap-y-[15px] gap-x-[40px] flex-wrap h-screen items-start justify-start">
+      <div className="flex flex-col flex-wrap gap-y-[15px] gap-x-[40px] h-[200px]">
         {userAccounts ? (
           userAccounts.map((item) => (
             <RadioButton
@@ -41,7 +37,7 @@ const UnDockAccountSelection = ({
             />
           ))
         ) : (
-          <div className="flex w-screen items-center justify-center">
+          <div className="flex h-full justify-center">
             <Loader />
           </div>
         )}

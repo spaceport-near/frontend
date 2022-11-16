@@ -11,14 +11,14 @@ export const NavBarLinks = [
   },
   {
     name: 'Trade',
-    path: 'trade',
+    path: '',
     key: 'trade',
     active: false,
     comingSoon: true,
   },
   {
     name: 'Stake',
-    path: 'stake',
+    path: '',
     key: 'stake',
     active: false,
     comingSoon: true,

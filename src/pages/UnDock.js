@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Modal from '../components/Modal';
 import useMultistepForm from '../hooks/useMultistepForm';
 import TermsAndConditions from '../components/UnDockForm/TermsAndConditions';
@@ -34,8 +34,6 @@ const UnDock = () => {
   const [userAccounts, setUserAccounts] = useState(null);
   const [seedPhrase, setSeedPhrase] = useState(null);
 
-  const getCurrentStep = () => currentStepIndex;
-
   const gotoNext = () => next();
 
   const goBack = () => back();
@@ -66,149 +64,149 @@ const UnDock = () => {
     goTo(3);
   };
 
-  const goNextStep = () => {
-    goTo(5);
-    setTimeout(() => goTo(6), 2000);
-  };
+  // TODO need for tests, remove it
+  // const goNextStep = () => {
+  //   goTo(5);
+  //   setTimeout(() => goTo(6), 2000);
+  // };
 
-  const { step, back, currentStepIndex, next, resetSteps, goTo } =
-    useMultistepForm([
-      <TermsAndConditions
-        stepSettings={{
-          showExitButton: true,
-          closeHandler: () => closeModal(),
-          showGoBackButton: true,
-          goBackButtonHandler: () => closeModal(),
-          title: 'Terms And Conditions',
-          subTitle: 'Terms And Conditions',
-          showSteps: true,
-          step: 0,
-        }}
-        closeModal={closeModal}
-        next={gotoNext}
-      />,
-      <UnDockAccountSelection
-        stepSettings={{
-          showExitButton: true,
-          closeHandler: () => closeModal(),
-          showGoBackButton: true,
-          goBackButtonHandler: () => goBack(),
-          title: 'Account Selection',
-          subTitle: 'Select the account you wish to Undock',
-          showSteps: true,
-          step: 1,
-        }}
-        next={gotoNext}
-        selectedAccount={selectedAccount}
-        setSelectedAccount={setSelectedAccount}
-        userAccounts={userAccounts}
-        setUserAccounts={setUserAccounts}
-      />,
-      <ConfirmUndocking
-        stepSettings={{
-          showExitButton: true,
-          closeHandler: () => closeModal(),
-          showGoBackButton: true,
-          goBackButtonHandler: () => goBack(),
-          title: 'Confirm Undocking',
-          subTitle: `Confirm transfer of assets from ${selectedAccount}`,
-          showSteps: true,
-          step: 2,
-        }}
-        selectedAccount={selectedAccount}
-        handleNextButton={getSeedPhraseByAcc}
-      />,
-      <ShowSeedPhrase
-        stepSettings={{
-          showExitButton: false,
-          showGoBackButton: false,
-          title: 'Undocking you account...',
-          subTitle: `Your New Seed Phrase for ${selectedAccount}`,
-          showSteps: false,
-          step: 3,
-        }}
-        seedPhrase={seedPhrase}
-        next={gotoNext}
-      />,
-      <ValidateSeed
-        stepSettings={{
-          showExitButton: false,
-          showGoBackButton: false,
-          title: 'Undocking you account...',
-          subTitle: `Your New Seed Phrase for ${selectedAccount}`,
-          showSteps: false,
-          step: 4,
-        }}
-        seedPhrase={seedPhrase}
-        next={handleUnDockAccount}
-      />,
-      <Processing
-        stepSettings={{
-          showExitButton: false,
-          showGoBackButton: false,
-          title: 'Processing...',
-          subTitle: `Spaceport is undocking ${selectedAccount}. DO NOT CLOSE THIS SCREEN.`,
-          showSteps: false,
-          step: 5,
-        }}
-      />,
-      <InstructionStepOne
-        stepSettings={{
-          showExitButton: false,
-          showGoBackButton: false,
-          title: 'Instructions to Enable Passphrase on your new account',
-          subTitle: `Follow this steps to enable the passphrase on your NEAR account`,
-          showSteps: false,
-          step: 6,
-        }}
-        next={gotoNext}
-      />,
-      <InstructionStepTwo
-        stepSettings={{
-          showExitButton: false,
-          showGoBackButton: false,
-          title: 'Instructions to Enable Passphrase on your new account',
-          subTitle: `Follow this steps to enable the passphrase on your NEAR account`,
-          showSteps: false,
-          step: 7,
-        }}
-        next={gotoNext}
-      />,
-      <Confirm
-        stepSettings={{
-          showExitButton: false,
-          showGoBackButton: false,
-          title: 'Confirm you have secured your wallet',
-          subTitle: 'Confirm undocking',
-          showSteps: false,
-          step: 8,
-        }}
-        next={gotoNext}
-      />,
-      <UndockingSuccessful
-        stepSettings={{
-          showExitButton: false,
-          showGoBackButton: false,
-          title: 'Undocking Successful',
-          subTitle: `Spaceport has undocking ${selectedAccount}`,
-          showSteps: false,
-          step: 9,
-        }}
-        next={gotoNext}
-      />,
-      <LastStep closeModal={closeModal} />,
-      <DockingFailed
-        stepSettings={{
-          showExitButton: true,
-          closeHandler: () => closeModal(),
-          showGoBackButton: false,
-          title: 'Error: Docking Failed',
-          subTitle: 'Spaceport is docking. DO NOT CLOSE THIS SCREEN.',
-          showSteps: false,
-          step: 11,
-        }}
-      />,
-    ]);
+  const { step, back, next, resetSteps, goTo } = useMultistepForm([
+    <TermsAndConditions
+      stepSettings={{
+        showExitButton: true,
+        closeHandler: () => closeModal(),
+        showGoBackButton: true,
+        goBackButtonHandler: () => closeModal(),
+        title: 'Terms And Conditions',
+        subTitle: 'Terms And Conditions',
+        showSteps: true,
+        step: 0,
+      }}
+      closeModal={closeModal}
+      next={gotoNext}
+    />,
+    <UnDockAccountSelection
+      stepSettings={{
+        showExitButton: true,
+        closeHandler: () => closeModal(),
+        showGoBackButton: true,
+        goBackButtonHandler: () => goBack(),
+        title: 'Account Selection',
+        subTitle: 'Select the account you wish to Undock',
+        showSteps: true,
+        step: 1,
+      }}
+      next={gotoNext}
+      selectedAccount={selectedAccount}
+      setSelectedAccount={setSelectedAccount}
+      userAccounts={userAccounts}
+      setUserAccounts={setUserAccounts}
+    />,
+    <ConfirmUndocking
+      stepSettings={{
+        showExitButton: true,
+        closeHandler: () => closeModal(),
+        showGoBackButton: true,
+        goBackButtonHandler: () => goBack(),
+        title: 'Confirm Undocking',
+        subTitle: `Confirm transfer of assets from ${selectedAccount}`,
+        showSteps: true,
+        step: 2,
+      }}
+      selectedAccount={selectedAccount}
+      handleNextButton={getSeedPhraseByAcc}
+    />,
+    <ShowSeedPhrase
+      stepSettings={{
+        showExitButton: false,
+        showGoBackButton: false,
+        title: 'Undocking you account...',
+        subTitle: `Your New Seed Phrase for ${selectedAccount}`,
+        showSteps: false,
+        step: 3,
+      }}
+      seedPhrase={seedPhrase}
+      next={gotoNext}
+    />,
+    <ValidateSeed
+      stepSettings={{
+        showExitButton: false,
+        showGoBackButton: false,
+        title: 'Undocking you account...',
+        subTitle: `Your New Seed Phrase for ${selectedAccount}`,
+        showSteps: false,
+        step: 4,
+      }}
+      seedPhrase={seedPhrase}
+      next={handleUnDockAccount}
+    />,
+    <Processing
+      stepSettings={{
+        showExitButton: false,
+        showGoBackButton: false,
+        title: 'Processing...',
+        subTitle: `Spaceport is undocking ${selectedAccount}. DO NOT CLOSE THIS SCREEN.`,
+        showSteps: false,
+        step: 5,
+      }}
+    />,
+    <InstructionStepOne
+      stepSettings={{
+        showExitButton: false,
+        showGoBackButton: false,
+        title: 'Instructions to Enable Passphrase on your new account',
+        subTitle: `Follow this steps to enable the passphrase on your NEAR account`,
+        showSteps: false,
+        step: 6,
+      }}
+      next={gotoNext}
+    />,
+    <InstructionStepTwo
+      stepSettings={{
+        showExitButton: false,
+        showGoBackButton: false,
+        title: 'Instructions to Enable Passphrase on your new account',
+        subTitle: `Follow this steps to enable the passphrase on your NEAR account`,
+        showSteps: false,
+        step: 7,
+      }}
+      next={gotoNext}
+    />,
+    <Confirm
+      stepSettings={{
+        showExitButton: false,
+        showGoBackButton: false,
+        title: 'Confirm you have secured your wallet',
+        subTitle: 'Confirm undocking',
+        showSteps: false,
+        step: 8,
+      }}
+      next={gotoNext}
+    />,
+    <UndockingSuccessful
+      stepSettings={{
+        showExitButton: false,
+        showGoBackButton: false,
+        title: 'Undocking Successful',
+        subTitle: `Spaceport has undocking ${selectedAccount}`,
+        showSteps: false,
+        step: 9,
+      }}
+      next={gotoNext}
+    />,
+    <LastStep closeModal={closeModal} />,
+    <DockingFailed
+      stepSettings={{
+        showExitButton: true,
+        closeHandler: () => closeModal(),
+        showGoBackButton: false,
+        title: 'Error: Docking Failed',
+        subTitle: 'Spaceport is docking. DO NOT CLOSE THIS SCREEN.',
+        showSteps: false,
+        step: 11,
+      }}
+    />,
+  ]);
 
   return (
     <div className="flex flex-col gap-y-[23px] borderSecondary border-theme-blue px-[42px] py-[34px]  ">

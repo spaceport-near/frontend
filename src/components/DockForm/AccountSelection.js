@@ -10,6 +10,13 @@ const AccountSelection = ({
 }) => {
   const [isChecked, setIsChecked] = useState(false);
 
+  const seedPhraseIsValid = (text) => {
+    const seedPhrase = text.trim().split(' ').length;
+    return !(seedPhrase === 0 || seedPhrase > 12 || seedPhrase < 12);
+  };
+
+  const isDisabled = !isChecked || !seedPhraseIsValid(phrase);
+
   return (
     <StepWrapper {...stepSettings}>
       <span className="text-[14px] leading-[152%] font-normal text-white">
@@ -45,7 +52,7 @@ const AccountSelection = ({
       <div className="self-center flex pt-[26px] flex-col">
         <button
           className="flex items-center justify-center m-auto h-[42px] px-[20px] bg-primary rounded-[4px] hover:bg-primaryLight disabled:bg-primaryLight"
-          disabled={!isChecked}
+          disabled={isDisabled}
           onClick={handleDockAccount}
         >
           Dock Account
