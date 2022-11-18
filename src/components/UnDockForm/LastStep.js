@@ -1,4 +1,8 @@
-const LastStep = ({ closeModal }) => {
+import { useNavigate } from 'react-router-dom';
+
+const LastStep = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="h-screen">
       <div className="flex flex-col justify-center items-center gap-2 pt-[160px]">
@@ -14,7 +18,7 @@ const LastStep = ({ closeModal }) => {
               <div className="flex pb-[30px] flex-col">
                 <button
                   className="flex items-center justify-center text-[18px] m-auto h-[42px] px-[60px] bg-primary rounded-[4px] hover:bg-primaryLight disabled:bg-primaryLight"
-                  onClick={closeModal}
+                  onClick={() => navigate('/dashboard')}
                 >
                   Close
                 </button>

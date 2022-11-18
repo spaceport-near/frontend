@@ -1,7 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import StepWrapper from '../StepWrapper';
 import ok from '../../assets/ok.svg';
 
-const DockingSuccessful = ({ stepSettings, closeModal }) => {
+const DockingSuccessful = ({ stepSettings }) => {
+  const navigate = useNavigate();
+
   return (
     <StepWrapper {...stepSettings}>
       <div className="flex text-[14px] leading-[152%] font-normal text-white justify-center">
@@ -17,7 +20,7 @@ const DockingSuccessful = ({ stepSettings, closeModal }) => {
         <button
           type="button"
           className="flex items-center justify-center m-auto h-[42px] px-[20px] bg-primary rounded-[4px] hover:bg-primaryLight disabled:bg-primaryLight"
-          onClick={closeModal}
+          onClick={() => navigate('/dashboard')}
         >
           Go To Spaceport Home
         </button>

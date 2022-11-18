@@ -70,7 +70,6 @@ const Dock = () => {
         showSteps: false,
         step: 0,
       }}
-      closeModal={closeModal}
     />,
     <DockingFailed
       stepSettings={{

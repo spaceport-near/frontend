@@ -28,7 +28,7 @@ const TermsAndConditions = ({ stepSettings, next }) => {
           />
         </div>
         <span className="font-normal text-white text-[18px] leading-[152%]">
-          I have read and accept the terms & conditions.
+          I have read and accept the Terms & Conditions.
         </span>
       </div>
       <div className="flex flex-col self-center pt-[26px]">

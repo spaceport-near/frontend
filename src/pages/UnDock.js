@@ -19,7 +19,7 @@ export const UndockData = {
   list1: [
     ' Creating your own NEAR wallet',
     'Transferring your assets to the wallet',
-    ' Launching away from SPACEPORT to explore on your own- this meansyou will be responsible for your PRIVATE KEY. No one will be abl to help you recover your wallet if anything happens!',
+    ' Launching away from SPACEPORT to explore on your own - this means you will be responsible for your PRIVATE KEY. No one will be able to help you recover your wallet if anything happens!',
   ],
   list2: [
     'Initiate and fund launch',
@@ -188,7 +188,7 @@ const UnDock = () => {
       }}
       next={gotoNext}
     />,
-    <LastStep closeModal={closeModal} />,
+    <LastStep />,
     <DockingFailed
       stepSettings={{
         showExitButton: true,
