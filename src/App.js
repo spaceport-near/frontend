@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider, ProtectedRoute } from './context/AuthProvider';
+import { gapi } from 'gapi-script';
 
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Dock from './pages/Dock';
 import UnDock from './pages/UnDock';
 import UserAssets from './pages/UserAssets';
-import { gapi } from 'gapi-script';
 
 const App = () => {
   const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;

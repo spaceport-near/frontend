@@ -1,10 +1,10 @@
-import logo from '../assets/logo.svg';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { GoogleLogout } from 'react-google-login';
 import { useAuth } from '../context/AuthProvider';
 import SideBar from '../components/SideBar';
 import NavBar from '../components/NavBar';
-import { GoogleLogout } from 'react-google-login';
+import logo from '../assets/logo.svg';
 
 const Dashboard = () => {
   const { profile, onFailure } = useAuth();

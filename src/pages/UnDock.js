@@ -1,6 +1,10 @@
 import { useState } from 'react';
-import Modal from '../components/Modal';
+import { unDockAccount } from '../services/api';
 import useMultistepForm from '../hooks/useMultistepForm';
+import Modal from '../components/Modal';
+import ShowSeedPhrase from '../components/UnDockForm/ShowSeedPhrase';
+import ValidateSeed from '../components/UnDockForm/ValidateSeed';
+import DockingFailed from '../components/DockForm/DockingFailed';
 import TermsAndConditions from '../components/UnDockForm/TermsAndConditions';
 import ConfirmUndocking from '../components/UnDockForm/ConfirmUndocking';
 import UnDockAccountSelection from '../components/UnDockForm/UnDockAccountSelection';
@@ -10,10 +14,6 @@ import InstructionStepTwo from '../components/UnDockForm/InstructionStepTwo';
 import Confirm from '../components/UnDockForm/Confirm';
 import UndockingSuccessful from '../components/UnDockForm/UndockingSuccessful';
 import LastStep from '../components/UnDockForm/LastStep';
-import { unDockAccount } from '../services/api';
-import ShowSeedPhrase from '../components/UnDockForm/ShowSeedPhrase';
-import ValidateSeed from '../components/UnDockForm/ValidateSeed';
-import DockingFailed from '../components/DockForm/DockingFailed';
 
 export const UndockData = {
   list1: [

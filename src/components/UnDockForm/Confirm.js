@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import ArrowBackDark from '../../assets/ArrowBackDark.svg';
 import StepWrapper from '../StepWrapper';
+import ArrowBackDark from '../../assets/ArrowBackDark.svg';
 
 const Confirm = ({ stepSettings, next }) => {
   const [isChecked, setIsChecked] = useState(false);

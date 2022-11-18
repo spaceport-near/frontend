@@ -1,5 +1,5 @@
-import ok from '../../assets/ok.svg';
 import StepWrapper from '../StepWrapper';
+import ok from '../../assets/ok.svg';
 
 const DockingSuccessful = ({ stepSettings, closeModal }) => {
   return (

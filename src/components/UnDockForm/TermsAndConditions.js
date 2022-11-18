@@ -1,8 +1,6 @@
-import ArrowBack from '../../assets/ArrowBack.svg';
-import ArrowBackDark from '../../assets/ArrowBackDark.svg';
-import StepLine from '../StepLine';
 import { useState } from 'react';
 import StepWrapper from '../StepWrapper';
+import ArrowBackDark from '../../assets/ArrowBackDark.svg';
 
 const TermsAndConditions = ({ stepSettings, next }) => {
   const [isChecked, setIsChecked] = useState(false);

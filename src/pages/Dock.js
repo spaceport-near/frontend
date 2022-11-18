@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import Modal from '../components/Modal';
+import { dockAccount } from '../services/api';
+import { useAuth } from '../context/AuthProvider';
 import useMultistepForm from '../hooks/useMultistepForm';
+import Modal from '../components/Modal';
 import AccountSelection from '../components/DockForm/AccountSelection';
 import Processing from '../components/DockForm/Processing';
 import DockingSuccessful from '../components/DockForm/DockingSuccessful';
 import DockingFailed from '../components/DockForm/DockingFailed';
-import { dockAccount } from '../services/api';
-import { useAuth } from '../context/AuthProvider';
 
 const Dock = () => {
   const { profile } = useAuth();

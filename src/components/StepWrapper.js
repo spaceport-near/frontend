@@ -1,6 +1,6 @@
+import StepLine from './StepLine';
 import ArrowBack from '../assets/ArrowBack.svg';
 import ArrowBackDark from '../assets/ArrowBackDark.svg';
-import StepLine from './StepLine';
 
 const StepWrapper = ({
   showExitButton,

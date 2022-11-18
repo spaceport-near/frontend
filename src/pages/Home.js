@@ -1,11 +1,11 @@
 import React from 'react';
-import logo from '../assets/logo.svg';
-import bigLogo from '../assets/bigLogo.svg';
-import LoginGoogleButton from '../components/LoginButton';
+import { Navigate } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
+import LoginGoogleButton from '../components/LoginButton';
 import { useAuth } from '../context/AuthProvider';
 import FooterMenu from '../components/FooterMenu';
-import { Navigate } from 'react-router-dom';
+import logo from '../assets/logo.svg';
+import bigLogo from '../assets/bigLogo.svg';
 
 const Home = () => {
   const { token, onSuccess, onFailure } = useAuth();

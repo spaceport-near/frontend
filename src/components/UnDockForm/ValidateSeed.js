@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react';
 import StepWrapper from '../StepWrapper';
 import ArrowBackDark from '../../assets/ArrowBackDark.svg';
-import { useEffect, useState } from 'react';
 
 const ValidateSeed = ({ stepSettings, seedPhrase, next }) => {
   const [randomNumber, setRandomNumber] = useState(1);

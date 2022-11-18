@@ -1,9 +1,9 @@
-import ArrowBackDark from '../../assets/ArrowBackDark.svg';
-import RadioButton from '../RadioButton';
 import { useEffect } from 'react';
+import RadioButton from '../RadioButton';
 import { getAccounts } from '../../services/api';
 import Loader from '../Loader';
 import StepWrapper from '../StepWrapper';
+import ArrowBackDark from '../../assets/ArrowBackDark.svg';
 
 const UnDockAccountSelection = ({
   stepSettings,

@@ -1,6 +1,6 @@
-import ArrowBackDark from '../../assets/ArrowBackDark.svg';
 import StepWrapper from '../StepWrapper';
 import ScreenShot2 from '../../assets/ScreenShot2.png';
+import ArrowBackDark from '../../assets/ArrowBackDark.svg';
 
 const InstructionStepTwo = ({ stepSettings, next }) => {
   return (

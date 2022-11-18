@@ -1,5 +1,5 @@
-import error from '../../assets/error.svg';
 import StepWrapper from '../StepWrapper';
+import error from '../../assets/error.svg';
 
 const DockingFailed = ({ stepSettings }) => {
   return (
