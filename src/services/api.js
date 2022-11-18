@@ -1,16 +1,15 @@
 const API_URL = process.env.REACT_APP_BACKEND_API;
 const prefix = 'api/1.0.0';
 
-export const refreshTokenSetup = (res) => {
-  let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000;
+const timeToRefresh = 600000;
 
+export const refreshTokenSetup = (googleAuth) => {
   const refreshToken = async () => {
-    const newAuthRes = await res.reloadAuthResponse();
-    refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
+    const newAuthRes = await googleAuth.currentUser.get().reloadAuthResponse();
     localStorage.setItem('token', newAuthRes.id_token);
-    setTimeout(refreshToken, refreshTiming);
+    setTimeout(refreshToken, timeToRefresh);
   };
-  setTimeout(refreshToken, refreshTiming);
+  setTimeout(refreshToken, timeToRefresh);
 };
 
 export const dockAccount = async (userId, seedPhrase) => {

@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Dock from './pages/Dock';
 import UnDock from './pages/UnDock';
 import UserAssets from './pages/UserAssets';
+import { refreshTokenSetup } from './services/api';
 
 const App = () => {
   const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
@@ -21,14 +22,11 @@ const App = () => {
         })
         .then(() => {
           const googleAuth = gapi.auth2.getAuthInstance();
-          localStorage.setItem(
-            'token',
-            googleAuth.currentUser.get().getAuthResponse().id_token
-          );
+          refreshTokenSetup(googleAuth);
         });
     };
     gapi.load('client:auth2', initClient);
-  }, []);
+    }, []);
 
   return (
     <AuthProvider>
