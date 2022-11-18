@@ -64,12 +64,6 @@ const UnDock = () => {
     goTo(3);
   };
 
-  // TODO need for tests, remove it
-  // const goNextStep = () => {
-  //   goTo(5);
-  //   setTimeout(() => goTo(6), 2000);
-  // };
-
   const { step, back, next, resetSteps, goTo } = useMultistepForm([
     <TermsAndConditions
       stepSettings={{

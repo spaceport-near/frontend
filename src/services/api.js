@@ -41,8 +41,9 @@ export const unDockAccount = async (accountId) => {
   });
 };
 
-export const getAccounts = async () => {
-  const url = `${API_URL}/${prefix}/accounts`;
+export const getAccounts = async (userId) => {
+  const condition = encodeURIComponent(JSON.stringify({userId}));
+  const url = `${API_URL}/${prefix}/accounts?conditions=${condition}`;
   const response = await fetch(url, {
     method: 'GET',
     headers: {
