@@ -14,15 +14,16 @@ export const AuthProvider = ({ children }) => {
   const [profile, setProfile] = useState(null);
   const [googleAuth, setGoogleAuth] = useState(null);
 
-  useEffect(() => {
-    const initClient = () => {
-      gapi.auth2
-        .init({
-          clientId: clientId,
-          scope: 'email',
-        })
-        .then(() => {
-          const googleAuth = gapi.auth2.getAuthInstance();
+  const initClient = () => {
+    gapi.auth2
+      .init({
+        clientId: clientId,
+        scope: 'email',
+      })
+      .then(() => {
+        const googleAuth = gapi.auth2.getAuthInstance();
+
+        if (googleAuth.currentUser.get().isSignedIn()) {
           setProfile({
             googleId: googleAuth.currentUser.get().getBasicProfile().getId(),
             email: googleAuth.currentUser.get().getBasicProfile().getEmail(),
@@ -31,12 +32,16 @@ export const AuthProvider = ({ children }) => {
           setToken(token);
           setGoogleAuth(googleAuth);
           navigate('/dashboard');
-        });
-    };
+        }
+      });
+  };
+
+  useEffect(() => {
     gapi.load('client:auth2', initClient);
   }, []);
 
   const handleLogin = (res) => {
+    gapi.load('client:auth2', initClient);
     const { tokenId } = res;
     setProfile(res.profileObj);
     setToken(tokenId);
