@@ -12,30 +12,32 @@ const Dashboard = () => {
   return (
     <div className="flex h-screen bg-primary">
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="flex justify-between items-center bg-dark min-h-[70px] px-[80px]">
-          <div className="flex">
-            <img src={logo} alt="spaceport" />
-          </div>
-          <div className="flex">
-            <p className="flex text-white items-center pr-[20px]">
-              {profile ? profile.email : 'no name'}
-            </p>
-            <GoogleLogout
-              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-              buttonText="Logout"
-              render={(renderProps) => (
-                <button
-                  type="button"
-                  className="m-auto text-dark px-[30px] h-[42px] bg-primary rounded-[6px] hover:bg-primaryLight"
-                  onClick={renderProps.onClick}
-                >
-                  Sign Out
-                </button>
-              )}
-              onLogoutSuccess={onFailure}
-            ></GoogleLogout>
-          </div>
-        </header>
+        <div className="relative z-20">
+          <header className="flex justify-between items-center bg-dark min-h-[70px] px-[80px]">
+            <div className="flex">
+              <img src={logo} alt="spaceport" />
+            </div>
+            <div className="flex">
+              <p className="flex text-white items-center pr-[20px]">
+                {profile ? profile.email : 'no name'}
+              </p>
+              <GoogleLogout
+                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                buttonText="Logout"
+                render={(renderProps) => (
+                  <button
+                    type="button"
+                    className="m-auto text-dark px-[30px] h-[42px] bg-primary rounded-[6px] hover:bg-primaryLight"
+                    onClick={renderProps.onClick}
+                  >
+                    Sign Out
+                  </button>
+                )}
+                onLogoutSuccess={onFailure}
+              ></GoogleLogout>
+            </div>
+          </header>
+        </div>
         <div className="flex h-full">
           <SideBar />
           <main className="flex flex-col w-full bg-white overflow-x-hidden overflow-y-auto pb-[60px]">

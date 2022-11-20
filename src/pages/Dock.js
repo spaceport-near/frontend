@@ -9,7 +9,7 @@ import DockingSuccessful from '../components/DockForm/DockingSuccessful';
 import DockingFailed from '../components/DockForm/DockingFailed';
 
 const Dock = () => {
-  const { profile } = useAuth();
+  const { profile, googleAuth } = useAuth();
   const [isChecked, setIsChecked] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [seedPhrase, setSeedPhrase] = useState('');
@@ -20,7 +20,7 @@ const Dock = () => {
 
   const handleDockAccount = () => {
     goTo(1);
-    dockAccount(profile.googleId, seedPhrase)
+    dockAccount(profile.googleId, seedPhrase, googleAuth)
       .then((data) => {
         goTo(2);
       })

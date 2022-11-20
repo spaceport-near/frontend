@@ -1,39 +1,55 @@
-import * as React from 'react';
+import React, { createContext, useState } from 'react';
 import { Navigate, useNavigate, useLocation } from 'react-router-dom';
-import { refreshTokenSetup } from '../services/api';
+import { useEffect } from 'react';
+import { gapi } from 'gapi-script';
 
-const AuthContext = React.createContext(null);
+const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
-  const [token, setToken] = React.useState(localStorage.getItem('token'));
-  const [profile, setProfile] = React.useState(
-    JSON.parse(localStorage.getItem('profile'))
-  );
+  const [token, setToken] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [googleAuth, setGoogleAuth] = useState(null);
+
+  useEffect(() => {
+    const initClient = () => {
+      gapi.auth2
+        .init({
+          clientId: clientId,
+          scope: 'email',
+        })
+        .then(() => {
+          const googleAuth = gapi.auth2.getAuthInstance();
+          setProfile({
+            googleId: googleAuth.currentUser.get().getBasicProfile().getId(),
+            email: googleAuth.currentUser.get().getBasicProfile().getEmail(),
+          });
+          const token = googleAuth.currentUser.get().getAuthResponse().id_token;
+          setToken(token);
+          setGoogleAuth(googleAuth);
+          navigate('/dashboard');
+        });
+    };
+    gapi.load('client:auth2', initClient);
+  }, []);
 
   const handleLogin = (res) => {
     const { tokenId } = res;
-    refreshTokenSetup(res);
-    localStorage.setItem('token', tokenId);
-    localStorage.setItem('profile', JSON.stringify(res.profileObj));
     setProfile(res.profileObj);
-    setToken('token');
-
+    setToken(tokenId);
     const origin = location.state?.from?.pathname || '/dashboard';
     navigate(origin);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('profile');
-    setToken(null);
-  };
+  const handleLogout = () => setToken(null);
 
   const value = {
     token,
     profile,
+    googleAuth,
     onSuccess: handleLogin,
     onFailure: handleLogout,
   };

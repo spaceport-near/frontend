@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import RadioButton from '../RadioButton';
+import { useAuth } from '../../context/AuthProvider';
 import { getAccounts } from '../../services/api';
+import RadioButton from '../RadioButton';
 import Loader from '../Loader';
 import StepWrapper from '../StepWrapper';
 import ArrowBackDark from '../../assets/ArrowBackDark.svg';
-import { useAuth } from '../../context/AuthProvider';
 
 const UnDockAccountSelection = ({
   stepSettings,
@@ -14,12 +14,12 @@ const UnDockAccountSelection = ({
   userAccounts,
   setUserAccounts,
 }) => {
-  const { profile } = useAuth();
+  const { profile, googleAuth } = useAuth();
   const buttonNextIsDisabled =
     selectedAccount && userAccounts && userAccounts.length !== 0;
 
   useEffect(() => {
-    getAccounts(profile.googleId)
+    getAccounts(profile.googleId, googleAuth)
       .then((data) => setUserAccounts(data.page.data))
       .catch((e) => setUserAccounts([]));
   }, []);

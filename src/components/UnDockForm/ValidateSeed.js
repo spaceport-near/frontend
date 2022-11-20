@@ -17,11 +17,8 @@ const ValidateSeed = ({ stepSettings, seedPhrase, next }) => {
       .find(
         (word, index) => word === inputSymbol && index + 1 === randomNumber
       );
-    console.log('res', !!res);
     setWordExist(!!res);
   };
-
-  console.log('wordExist', wordExist);
 
   return (
     <StepWrapper {...stepSettings}>

@@ -15,7 +15,7 @@ const StepWrapper = ({
 }) => {
   return (
     <div className="h-screen">
-      <div className="py-[20px] h-[78px]">
+      <div className="pt-[85px] pb-[20px]">
         {showExitButton && (
           <button
             onClick={closeHandler}

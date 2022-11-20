@@ -7,6 +7,14 @@ const RadioButton = ({ id, value, label, setSelect, selected }) => {
     setSelect(e.currentTarget.value);
   };
 
+  const addEllipsis = (string) => {
+    const maxLength = 20;
+    if (string.length > maxLength) {
+      return string.slice(0, maxLength) + '...';
+    }
+    return string;
+  };
+
   return (
     <div
       className={
@@ -25,9 +33,9 @@ const RadioButton = ({ id, value, label, setSelect, selected }) => {
           checked={isSelectedButton(value)}
           className="w-[19px] h-[19px] accent-[#000000]"
         />
-        <span className="font-bold text-[18px] leading-[152%] text-white">
-          {label}
-        </span>
+        <p className="font-bold text-[18px] leading-[152%] text-white">
+          {addEllipsis(label)}
+        </p>
       </label>
     </div>
   );

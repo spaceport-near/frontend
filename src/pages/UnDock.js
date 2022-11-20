@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { unDockAccount } from '../services/api';
 import useMultistepForm from '../hooks/useMultistepForm';
+import { useAuth } from '../context/AuthProvider';
 import Modal from '../components/Modal';
 import ShowSeedPhrase from '../components/UnDockForm/ShowSeedPhrase';
 import ValidateSeed from '../components/UnDockForm/ValidateSeed';
@@ -29,6 +30,7 @@ export const UndockData = {
 };
 
 const UnDock = () => {
+  const { googleAuth } = useAuth();
   const [openModal, setOpenModal] = useState(false);
   const [selectedAccount, setSelectedAccount] = useState(null);
   const [userAccounts, setUserAccounts] = useState(null);
@@ -45,7 +47,7 @@ const UnDock = () => {
 
   const handleUnDockAccount = () => {
     goTo(5);
-    unDockAccount(selectedAccount)
+    unDockAccount(selectedAccount, googleAuth)
       .then((data) => {
         window.open('https://wallet.testnet.near.org/', '_blank');
         goTo(6);
