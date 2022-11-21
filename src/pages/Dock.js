@@ -56,7 +56,7 @@ const Dock = () => {
         showExitButton: false,
         showGoBackButton: false,
         title: 'Processing...',
-        subTitle: 'Spaceport is docking DO NOT CLOSING THIS SCREEN.',
+        subTitle: 'Spaceport is docking DO NOT CLOSE THIS SCREEN.',
         showSteps: false,
         step: 0,
       }}
