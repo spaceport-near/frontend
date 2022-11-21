@@ -24,20 +24,29 @@ const UnDockAccountSelection = ({
       .catch((e) => setUserAccounts([]));
   }, []);
 
+  const renderAccounts = () =>
+    userAccounts.length === 0 ? (
+      <div className="text-white">
+        Currently you have no accounts in Spaceport
+      </div>
+    ) : (
+      userAccounts.map((item) => (
+        <RadioButton
+          key={item.accountId}
+          id={item.accountId}
+          value={item.accountId}
+          selected={selectedAccount}
+          setSelect={setSelectedAccount}
+          label={item.accountId}
+        />
+      ))
+    );
+
   return (
     <StepWrapper {...stepSettings}>
       <div className="flex flex-col flex-wrap gap-y-[15px] gap-x-[40px] h-[200px]">
         {userAccounts ? (
-          userAccounts.map((item) => (
-            <RadioButton
-              key={item.accountId}
-              id={item.accountId}
-              value={item.accountId}
-              selected={selectedAccount}
-              setSelect={setSelectedAccount}
-              label={item.accountId}
-            />
-          ))
+          renderAccounts()
         ) : (
           <div className="flex h-full justify-center">
             <Loader />
