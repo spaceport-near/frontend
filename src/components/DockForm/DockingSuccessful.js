@@ -8,7 +8,7 @@ const DockingSuccessful = ({ stepSettings }) => {
   return (
     <StepWrapper {...stepSettings}>
       <div className="flex text-[14px] leading-[152%] font-normal text-white justify-center">
-        All assets for account.near have been successfully transferred.
+        All assets have been successfully transferred.
       </div>
       <div className="flex flex-col mx-auto items-center justify-center py-[30px]">
         <img src={ok} alt="ok" />
