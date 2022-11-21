@@ -25,11 +25,11 @@ const ValidateSeed = ({ stepSettings, seedPhrase, next }) => {
       <div className="justify-between h-full">
         <div className="items-start">
           <span className="text-[18px] leading-[152%] font-normal text-white ">
-            Please enter the
+            Please enter word
           </span>
           <span className="text-[18px] leading-[152%] font-bold text-white ">
             {' '}
-            {randomNumber}th word
+            #{randomNumber}
           </span>
         </div>
         <div className="flex justify-center w-full pt-[50px]">

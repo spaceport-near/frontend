@@ -151,7 +151,7 @@ const UnDock = () => {
         showExitButton: false,
         showGoBackButton: false,
         title: 'Instructions to Enable Passphrase on your new account',
-        subTitle: `Follow this steps to enable the passphrase on your NEAR account`,
+        subTitle: `Follow these steps to enable the passphrase on your NEAR account`,
         showSteps: false,
         step: 6,
       }}
@@ -162,7 +162,7 @@ const UnDock = () => {
         showExitButton: false,
         showGoBackButton: false,
         title: 'Instructions to Enable Passphrase on your new account',
-        subTitle: `Follow this steps to enable the passphrase on your NEAR account`,
+        subTitle: `Follow these steps to enable the passphrase on your NEAR account`,
         showSteps: false,
         step: 7,
       }}
