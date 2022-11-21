@@ -43,7 +43,7 @@ const Dock = () => {
         showGoBackButton: true,
         goBackButtonHandler: () => closeModal(),
         title: 'Account Selection',
-        subTitle: 'Enter address of the account you with to Dock',
+        subTitle: 'Enter address of the account you wish to Dock',
         showSteps: false,
         step: 0,
       }}
